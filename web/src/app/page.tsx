@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useState, useEffect } from "react";
+import Link from "next/link";
 
 export default function Home() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -44,7 +45,7 @@ export default function Home() {
                 Comment ça marche
               </a>
               <a href="/install" className="text-gray-600 hover:text-blue-600 transition-colors">
-                📱 Installer l'app
+                📱 Installer l&apos;app
               </a>
               <a href="#contact" className="text-gray-600 hover:text-blue-600 transition-colors">
                 Contact
@@ -92,7 +93,7 @@ export default function Home() {
                   className="block px-3 py-2 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-colors"
                   onClick={() => setMobileMenuOpen(false)}
                 >
-                  📱 Installer l'app
+                  📱 Installer l&apos;app
         </a>
         <a
                   href="#contact" 
@@ -122,7 +123,7 @@ export default function Home() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a href="/install" className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-4 rounded-xl text-lg font-semibold hover:shadow-2xl transition-all duration-300 transform hover:scale-105 inline-block text-center">
-              📱 Installer l'app mobile
+              📱 Installer l&apos;app mobile
             </a>
             <button className="border-2 border-gray-300 text-gray-700 px-8 py-4 rounded-xl text-lg font-semibold hover:border-blue-600 hover:text-blue-600 transition-all duration-300">
               Voir la démo
@@ -137,13 +138,13 @@ export default function Home() {
           <div className="text-center mb-12">
             <div className="inline-flex items-center space-x-2 bg-green-100 text-green-800 px-4 py-2 rounded-full text-sm font-semibold mb-4">
               <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-              <span>Application en cours d'exécution</span>
+              <span>Application en cours d&apos;exécution</span>
             </div>
             <h3 className="text-3xl font-bold text-gray-900 mb-4">
               Testez SocialPlanr dès maintenant !
             </h3>
             <p className="text-lg text-gray-600 mb-8">
-              L'application mobile est actuellement en ligne et prête à être testée
+              L&apos;application mobile est actuellement en ligne et prête à être testée
             </p>
           </div>
 
@@ -157,7 +158,7 @@ export default function Home() {
                   <div>
                     <h5 className="font-semibold text-green-700 mb-2">✅ Android: APK Complet</h5>
                     <ol className="space-y-1 text-sm text-gray-600">
-                      <li>1. Téléchargez l'APK (78MB) depuis la page d'installation</li>
+                      <li>1. Téléchargez l&apos;APK (78MB) depuis la page d&apos;installation</li>
                       <li>2. Installez directement sur votre Android</li>
                       <li>3. Application complète et autonome !</li>
                     </ol>
@@ -166,7 +167,7 @@ export default function Home() {
                     <h5 className="font-semibold text-blue-700 mb-2">📲 iOS/Android: QR Code Expo</h5>
                     <ol className="space-y-1 text-sm text-gray-600">
                       <li>1. Installez <strong>Expo Go</strong> depuis votre App Store</li>
-                      <li>2. Scannez le QR code sur la page d'installation</li>
+                      <li>2. Scannez le QR code sur la page d&apos;installation</li>
                       <li>3. Test instantané (iOS/Android compatible)</li>
                     </ol>
                   </div>
@@ -184,10 +185,10 @@ export default function Home() {
                   🌐 Dans votre navigateur
                 </h4>
                 <p className="text-gray-600 mb-4">
-                  Testez directement la version web de l'application
+                  Testez directement la version web de l&apos;application
                 </p>
                 <a href="http://localhost:8081" target="_blank" rel="noopener noreferrer" className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors inline-block">
-                  Ouvrir l'app web
+                  Ouvrir l&apos;app web
                 </a>
               </div>
             </div>
@@ -198,7 +199,7 @@ export default function Home() {
                   <div className="w-48 h-48 bg-gray-100 rounded-2xl flex items-center justify-center mx-auto">
                     <div className="text-center">
                       <div className="text-6xl mb-2">📱</div>
-                      <p className="text-sm text-gray-500">Mockup de l'app</p>
+                      <p className="text-sm text-gray-500">Mockup de l&apos;app</p>
                       <p className="text-xs text-gray-400 mt-2">4 onglets principaux</p>
                     </div>
                   </div>
@@ -223,7 +224,7 @@ export default function Home() {
               Fonctionnalités déjà implémentées
             </h3>
             <p className="text-xl text-gray-600">
-              L'application mobile contient déjà toutes ces fonctionnalités
+              L&apos;application mobile contient déjà toutes ces fonctionnalités
             </p>
           </div>
           
@@ -237,7 +238,7 @@ export default function Home() {
               </div>
               <h4 className="text-xl font-semibold text-gray-900 mb-3">📱 Onglet Groupes</h4>
               <p className="text-gray-600">
-                Interface complète avec 3 groupes d'exemple : "Week-end à Paris", "Voyage en Espagne", "Soirée d'anniversaire". 
+                Interface complète avec 3 groupes d&apos;exemple : &quot;Week-end à Paris&quot;, &quot;Voyage en Espagne&quot;, &quot;Soirée d&apos;anniversaire&quot;. 
                 Statuts visuels, nombre de membres, bouton de création.
               </p>
             </div>
@@ -251,7 +252,7 @@ export default function Home() {
               </div>
               <h4 className="text-xl font-semibold text-gray-900 mb-3">📅 Onglet Événements</h4>
               <p className="text-gray-600">
-                3 événements avec statuts réels : "Vote en cours", "Confirmé", "Terminé". 
+                3 événements avec statuts réels : &quot;Vote en cours&quot;, &quot;Confirmé&quot;, &quot;Terminé&quot;. 
                 Tags IA, détails dates/lieux, compteur participants.
               </p>
             </div>
@@ -265,8 +266,8 @@ export default function Home() {
               </div>
               <h4 className="text-xl font-semibold text-gray-900 mb-3">🤖 Tags IA Intégrés</h4>
               <p className="text-gray-600">
-                Les événements affichent des badges "🤖 IA" quand un plan a été généré automatiquement. 
-                Interface prête pour l'intégration OpenAI.
+                Les événements affichent des badges &quot;🤖 IA&quot; quand un plan a été généré automatiquement. 
+                Interface prête pour l&apos;intégration OpenAI.
               </p>
             </div>
 
@@ -279,8 +280,8 @@ export default function Home() {
               </div>
               <h4 className="text-xl font-semibold text-gray-900 mb-3">💳 Onglet Dépenses</h4>
               <p className="text-gray-600">
-                Dashboard financier complet : "Vous devez" vs "On vous doit", solde net coloré, 
-                4 dépenses d'exemple avec catégories (hôtel, restaurant, transport, loisirs).
+                Dashboard financier complet : &quot;Vous devez&quot; vs &quot;On vous doit&quot;, solde net coloré, 
+                4 dépenses d&apos;exemple avec catégories (hôtel, restaurant, transport, loisirs).
               </p>
             </div>
 
@@ -369,12 +370,12 @@ export default function Home() {
           <div className="mt-12 bg-gradient-to-r from-blue-600 to-purple-600 p-8 rounded-2xl text-center">
             <h4 className="text-2xl font-bold mb-4">🎯 MVP Fonctionnel Disponible</h4>
             <p className="text-lg mb-6">
-              L'interface utilisateur est entièrement implémentée avec des données simulées. 
-              Prêt pour l'intégration backend et les fonctionnalités avancées.
+              L&apos;interface utilisateur est entièrement implémentée avec des données simulées. 
+              Prêt pour l&apos;intégration backend et les fonctionnalités avancées.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a href="/install" className="bg-white text-blue-600 px-6 py-3 rounded-lg font-semibold hover:shadow-lg transition-all">
-                📱 Tester l'app mobile
+                📱 Tester l&apos;app mobile
               </a>
               <button className="border-2 border-white text-white px-6 py-3 rounded-lg font-semibold hover:bg-white hover:text-blue-600 transition-all">
                 📚 Voir la documentation
@@ -440,12 +441,12 @@ export default function Home() {
             Prêt à organiser votre prochain événement ?
           </h3>
           <p className="text-xl text-blue-100 mb-8">
-            Rejoignez des milliers d'utilisateurs qui font confiance à SocialPlanr 
+            Rejoignez des milliers d&apos;utilisateurs qui font confiance à SocialPlanr 
             pour leurs événements collaboratifs.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a href="/install" className="bg-white text-blue-600 px-8 py-4 rounded-xl text-lg font-semibold hover:shadow-2xl transition-all duration-300 transform hover:scale-105 inline-block text-center">
-              📱 Installer l'app mobile
+              📱 Installer l&apos;app mobile
             </a>
             <button className="border-2 border-white text-white px-8 py-4 rounded-xl text-lg font-semibold hover:bg-white hover:text-blue-600 transition-all duration-300">
               En savoir plus
@@ -466,7 +467,7 @@ export default function Home() {
                 <h4 className="text-2xl font-bold">SocialPlanr</h4>
               </div>
               <p className="text-gray-400 mb-6">
-                Le gestionnaire d'événements collaboratif intelligent qui révolutionne 
+                Le gestionnaire d&apos;événements collaboratif intelligent qui révolutionne 
                 la façon dont vous organisez vos sorties entre amis.
               </p>
               <div className="flex space-x-4">
