@@ -1,0 +1,25 @@
+{
+  "name": "@socialplanr/shared",
+  "version": "1.0.0",
+  "description": "Types, hooks et utilitaires partagés pour SocialPlanr",
+  "main": "index.ts",
+  "types": "index.ts",
+  "scripts": {
+    "type-check": "tsc --noEmit"
+  },
+  "peerDependencies": {
+    "react": "^18.0.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.0.0",
+    "typescript": "^5.0.0"
+  },
+  "keywords": [
+    "socialplanr",
+    "shared",
+    "types",
+    "hooks"
+  ],
+  "author": "SocialPlanr Team",
+  "license": "MIT"
+} 

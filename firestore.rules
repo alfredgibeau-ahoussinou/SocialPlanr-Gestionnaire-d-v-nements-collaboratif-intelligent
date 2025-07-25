@@ -1,0 +1,169 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // 👥 RÈGLES POUR LES UTILISATEURS
+    match /users/{userId} {
+      // L'utilisateur peut lire et écrire ses propres données
+      allow read, write: if request.auth != null && request.auth.uid == userId;
+      
+      // Les autres utilisateurs authentifiés peuvent lire les profils publics (pour mentions, recherche, etc.)
+      allow read: if request.auth != null;
+      
+      // Validation des données lors de la création/modification
+      allow write: if request.auth != null 
+        && request.auth.uid == userId
+        && isValidUserData(request.resource.data);
+    }
+    
+    // 👥 RÈGLES POUR LES GROUPES
+    match /groups/{groupId} {
+      // Lecture : tous les utilisateurs authentifiés (pour recherche et découverte)
+      allow read: if request.auth != null;
+      
+      // Création : utilisateurs authentifiés avec validation
+      allow create: if request.auth != null 
+        && request.auth.uid == request.resource.data.createdBy
+        && request.auth.uid in request.resource.data.members
+        && isValidGroupData(request.resource.data);
+      
+      // Modification : créateur du groupe ou membres (pour rejoindre/quitter)
+      allow update: if request.auth != null 
+        && (request.auth.uid == resource.data.createdBy 
+            || request.auth.uid in resource.data.members
+            || isJoiningGroup(request.resource.data, resource.data))
+        && isValidGroupData(request.resource.data);
+      
+      // Suppression : créateur uniquement
+      allow delete: if request.auth != null 
+        && request.auth.uid == resource.data.createdBy;
+    }
+    
+    // 📅 RÈGLES POUR LES ÉVÉNEMENTS
+    match /events/{eventId} {
+      // Lecture : participants à l'événement OU membres du groupe associé OU créateur
+      allow read: if request.auth != null 
+        && (request.auth.uid in resource.data.attendees
+            || request.auth.uid == resource.data.createdBy
+            || (resource.data.groupId != null 
+                && request.auth.uid in get(/databases/$(database)/documents/groups/$(resource.data.groupId)).data.members));
+      
+      // Création : utilisateurs authentifiés avec validation
+      allow create: if request.auth != null 
+        && request.auth.uid == request.resource.data.createdBy
+        && request.auth.uid in request.resource.data.attendees
+        && isValidEventData(request.resource.data)
+        && (request.resource.data.groupId == null 
+            || request.auth.uid in get(/databases/$(database)/documents/groups/$(request.resource.data.groupId)).data.members);
+      
+      // Modification : créateur de l'événement OU pour rejoindre/quitter l'événement
+      allow update: if request.auth != null 
+        && (request.auth.uid == resource.data.createdBy
+            || isJoiningOrLeavingEvent(request.resource.data, resource.data, request.auth.uid))
+        && isValidEventData(request.resource.data);
+      
+      // Suppression : créateur uniquement
+      allow delete: if request.auth != null 
+        && request.auth.uid == resource.data.createdBy;
+    }
+    
+    // 💰 RÈGLES POUR LES DÉPENSES (fonctionnalité future)
+    match /expenses/{expenseId} {
+      // Lecture : payeur ou participants
+      allow read: if request.auth != null 
+        && (request.auth.uid == resource.data.paidBy 
+            || request.auth.uid in resource.data.participants);
+      
+      // Création : utilisateurs authentifiés avec validation
+      allow create: if request.auth != null 
+        && request.auth.uid == request.resource.data.paidBy
+        && request.auth.uid in request.resource.data.participants
+        && isValidExpenseData(request.resource.data);
+      
+      // Modification : payeur ou participants (pour confirmer, contester, etc.)
+      allow update: if request.auth != null 
+        && (request.auth.uid == resource.data.paidBy 
+            || request.auth.uid in resource.data.participants)
+        && isValidExpenseData(request.resource.data);
+      
+      // Suppression : payeur uniquement
+      allow delete: if request.auth != null 
+        && request.auth.uid == resource.data.paidBy;
+    }
+    
+    // 🔧 FONCTIONS DE VALIDATION
+    
+    // Validation des données utilisateur
+    function isValidUserData(data) {
+      return data.keys().hasAll(['uid', 'email', 'firstName', 'lastName', 'displayName', 'createdAt'])
+        && data.uid is string && data.uid.size() > 0
+        && data.email is string && data.email.matches('.*@.*\\..*')
+        && data.firstName is string && data.firstName.size() > 0 && data.firstName.size() <= 50
+        && data.lastName is string && data.lastName.size() > 0 && data.lastName.size() <= 50
+        && data.displayName is string && data.displayName.size() > 0 && data.displayName.size() <= 100
+        && data.createdAt is timestamp;
+    }
+    
+    // Validation des données de groupe
+    function isValidGroupData(data) {
+      return data.keys().hasAll(['name', 'members', 'createdBy', 'createdAt', 'status'])
+        && data.name is string && data.name.size() > 0 && data.name.size() <= 100
+        && data.members is list && data.members.size() > 0 && data.members.size() <= 50
+        && data.createdBy is string && data.createdBy.size() > 0
+        && data.createdAt is timestamp
+        && data.status in ['active', 'planning', 'completed']
+        && data.createdBy in data.members;
+    }
+    
+    // Validation des données d'événement  
+    function isValidEventData(data) {
+      return data.keys().hasAll(['title', 'date', 'createdBy', 'createdAt', 'attendees', 'status'])
+        && data.title is string && data.title.size() > 0 && data.title.size() <= 200
+        && data.date is timestamp
+        && data.createdBy is string && data.createdBy.size() > 0
+        && data.createdAt is timestamp
+        && data.attendees is list && data.attendees.size() > 0 && data.attendees.size() <= 100
+        && data.status in ['planning', 'voting', 'confirmed', 'in_progress', 'completed']
+        && data.createdBy in data.attendees
+        && (data.location == null || (data.location is string && data.location.size() <= 200))
+        && (data.description == null || (data.description is string && data.description.size() <= 1000));
+    }
+    
+    // Validation des données de dépense
+    function isValidExpenseData(data) {
+      return data.keys().hasAll(['title', 'amount', 'paidBy', 'participants', 'createdAt', 'status'])
+        && data.title is string && data.title.size() > 0 && data.title.size() <= 200
+        && data.amount is number && data.amount > 0 && data.amount <= 10000
+        && data.paidBy is string && data.paidBy.size() > 0
+        && data.participants is list && data.participants.size() > 0 && data.participants.size() <= 50
+        && data.createdAt is timestamp
+        && data.status in ['pending', 'settled']
+        && data.paidBy in data.participants
+        && (data.category == null || (data.category is string && data.category.size() <= 50));
+    }
+    
+    // Fonction pour vérifier si un utilisateur rejoint un groupe
+    function isJoiningGroup(newData, oldData) {
+      return newData.members.size() == oldData.members.size() + 1
+        && newData.members.hasAll(oldData.members);
+    }
+    
+         // Fonction pour vérifier si un utilisateur rejoint/quitte un événement
+     function isJoiningOrLeavingEvent(newData, oldData, userId) {
+       // L'utilisateur rejoint l'événement
+       let isJoining = newData.attendees.size() == oldData.attendees.size() + 1 
+         && newData.attendees.hasAll(oldData.attendees)
+         && userId in newData.attendees
+         && !(userId in oldData.attendees);
+       
+       // L'utilisateur quitte l'événement  
+       let isLeaving = newData.attendees.size() == oldData.attendees.size() - 1
+         && oldData.attendees.hasAll(newData.attendees)
+         && !(userId in newData.attendees)
+         && userId in oldData.attendees;
+         
+       return isJoining || isLeaving;
+     }
+  }
+} 

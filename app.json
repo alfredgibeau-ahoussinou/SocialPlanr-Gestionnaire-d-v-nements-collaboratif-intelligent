@@ -1,0 +1,8 @@
+{
+  "android": {
+    "package": "com.alfredgibeauahoussinou.socialplanrgestionnairedvnementscollaboratifintelligent"
+  },
+  "ios": {
+    "bundleIdentifier": "com.alfredgibeauahoussinou.socialplanrgestionnairedvnementscollaboratifintelligent"
+  }
+}

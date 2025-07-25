@@ -1,0 +1,108 @@
+{
+  "users": {
+    "user1": {
+      "uid": "user1",
+      "email": "test@socialplanr.com",
+      "firstName": "Jean",
+      "lastName": "Dupont",
+      "displayName": "Jean Dupont",
+      "createdAt": "2024-01-15T10:00:00Z"
+    },
+    "user2": {
+      "uid": "user2", 
+      "email": "marie@socialplanr.com",
+      "firstName": "Marie",
+      "lastName": "Martin",
+      "displayName": "Marie Martin",
+      "createdAt": "2024-01-16T14:30:00Z"
+    }
+  },
+  
+  "groups": {
+    "group1": {
+      "name": "Amis de la Fac",
+      "description": "Groupe des anciens étudiants",
+      "members": ["user1", "user2"],
+      "createdBy": "user1",
+      "createdAt": "2024-01-20T09:00:00Z",
+      "status": "active",
+      "memberCount": 2
+    },
+    "group2": {
+      "name": "Équipe Football",
+      "description": "Équipe de foot du dimanche",
+      "members": ["user1"],
+      "createdBy": "user1", 
+      "createdAt": "2024-01-25T16:00:00Z",
+      "status": "active",
+      "memberCount": 1
+    }
+  },
+  
+  "events": {
+    "event1": {
+      "title": "Soirée cinéma",
+      "description": "Regarder le nouveau film Marvel",
+      "date": "2024-02-15T20:00:00Z",
+      "location": "Cinéma UGC Champs-Élysées",
+      "createdBy": "user1",
+      "createdAt": "2024-01-30T10:00:00Z",
+      "attendees": ["user1", "user2"],
+      "groupId": "group1",
+      "status": "planning",
+      "votes": [],
+      "expenses": []
+    },
+    "event2": {
+      "title": "Match de foot",
+      "description": "Match amical contre l'équipe rivale",
+      "date": "2024-02-10T15:00:00Z", 
+      "location": "Stade municipal",
+      "createdBy": "user1",
+      "createdAt": "2024-02-01T08:30:00Z",
+      "attendees": ["user1"],
+      "groupId": "group2",
+      "status": "confirmed",
+      "votes": [],
+      "expenses": []
+    },
+    "event3": {
+      "title": "Anniversaire Sarah",
+      "description": "Fêter les 25 ans de Sarah",
+      "date": "2024-02-20T19:30:00Z",
+      "location": "Restaurant Le Comptoir",
+      "createdBy": "user2",
+      "createdAt": "2024-02-05T12:00:00Z",
+      "attendees": ["user1", "user2"],
+      "groupId": null,
+      "status": "voting", 
+      "votes": [],
+      "expenses": []
+    }
+  },
+  
+  "expenses": {
+    "expense1": {
+      "title": "Billets de cinéma",
+      "amount": 24.00,
+      "category": "entertainment",
+      "paidBy": "user1",
+      "participants": ["user1", "user2"],
+      "eventId": "event1",
+      "groupId": "group1",
+      "createdAt": "2024-02-15T20:30:00Z",
+      "status": "pending"
+    },
+    "expense2": {
+      "title": "Location terrain",
+      "amount": 50.00,
+      "category": "sports",
+      "paidBy": "user1", 
+      "participants": ["user1"],
+      "eventId": "event2",
+      "groupId": "group2",
+      "createdAt": "2024-02-10T15:30:00Z",
+      "status": "settled"
+    }
+  }
+} 
