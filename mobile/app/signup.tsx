@@ -15,6 +15,8 @@ import {
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { router } from 'expo-router';
 import { useAuth } from '../contexts/AuthContext';
+import TermsOfServiceModal from '../components/TermsOfServiceModal';
+import PrivacyPolicyModal from '../components/PrivacyPolicyModal';
 
 export default function SignupScreen() {
   const [formData, setFormData] = useState({
@@ -26,6 +28,8 @@ export default function SignupScreen() {
   });
   const [isLoading, setIsLoading] = useState(false);
   const [acceptTerms, setAcceptTerms] = useState(false);
+  const [showTermsModal, setShowTermsModal] = useState(false);
+  const [showPrivacyModal, setShowPrivacyModal] = useState(false);
   const { signup, user } = useAuth();
   
   const fadeAnim = useRef(new Animated.Value(0)).current;
@@ -269,9 +273,9 @@ export default function SignupScreen() {
                 </View>
                 <Text style={styles.checkboxText}>
                   J&apos;accepte les{' '}
-                  <Text style={styles.linkText}>conditions d&apos;utilisation</Text>
+                  <Text style={styles.linkText} onPress={() => setShowTermsModal(true)}>conditions d&apos;utilisation</Text>
                   {' '}et la{' '}
-                  <Text style={styles.linkText}>politique de confidentialité</Text>
+                  <Text style={styles.linkText} onPress={() => setShowPrivacyModal(true)}>politique de confidentialité</Text>
                 </Text>
               </TouchableOpacity>
             </View>
@@ -345,6 +349,16 @@ export default function SignupScreen() {
           <Text style={styles.backButtonText}>← Retour</Text>
         </TouchableOpacity>
       </KeyboardAvoidingView>
+
+      {/* Modales pour CGU et Politique de confidentialité */}
+      <TermsOfServiceModal
+        visible={showTermsModal}
+        onClose={() => setShowTermsModal(false)}
+      />
+      <PrivacyPolicyModal
+        visible={showPrivacyModal}
+        onClose={() => setShowPrivacyModal(false)}
+      />
     </SafeAreaView>
   );
 }

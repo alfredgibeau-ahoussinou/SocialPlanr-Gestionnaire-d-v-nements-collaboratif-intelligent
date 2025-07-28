@@ -1,0 +1,1049 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>RAPPORT_SOCIALPLANR</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { color: #008000; } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { color: #008000; font-weight: bold; } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<h1 id="rapport-complet---socialplanr">RAPPORT COMPLET -
+SOCIALPLANR</h1>
+<h2 id="gestionnaire-dévénements-collaboratif-intelligent">Gestionnaire
+d’événements collaboratif intelligent</h2>
+<hr />
+<h2 id="table-des-matières">TABLE DES MATIÈRES</h2>
+<ol type="1">
+<li><a href="#résumé-exécutif">Résumé exécutif</a></li>
+<li><a href="#présentation-du-projet">Présentation du projet</a></li>
+<li><a href="#architecture-technique">Architecture technique</a></li>
+<li><a href="#fonctionnalités-implémentées">Fonctionnalités
+implémentées</a></li>
+<li><a href="#interface-utilisateur">Interface utilisateur</a></li>
+<li><a href="#technologies-utilisées">Technologies utilisées</a></li>
+<li><a href="#structure-du-code">Structure du code</a></li>
+<li><a href="#état-actuel-du-développement">État actuel du
+développement</a></li>
+<li><a href="#roadmap-et-prochaines-étapes">Roadmap et prochaines
+étapes</a></li>
+<li><a href="#analyse-technique-détaillée">Analyse technique
+détaillée</a></li>
+<li><a href="#sécurité-et-performance">Sécurité et performance</a></li>
+<li><a href="#conclusion">Conclusion</a></li>
+</ol>
+<hr />
+<h2 id="résumé-exécutif">1. RÉSUMÉ EXÉCUTIF</h2>
+<h3 id="vue-densemble">Vue d’ensemble</h3>
+<p>SocialPlanr est une plateforme collaborative intelligente pour
+organiser des événements de groupe (voyages, week-ends, soirées, etc.)
+avec gestion des votes, des dépenses, et génération automatique de plans
+grâce à l’IA. L’application centralise tout : choix de dates, lieux,
+activités, gestion de la cagnotte, et suggestions d’hébergement.</p>
+<h3 id="statut-actuel">Statut actuel</h3>
+<ul>
+<li>✅ <strong>MVP Interface Complète</strong> : Application mobile
+entièrement fonctionnelle</li>
+<li>✅ <strong>APK Android Généré</strong> : Version installable de 78MB
+disponible</li>
+<li>✅ <strong>Site Web Présentation</strong> : Interface responsive
+avec téléchargement</li>
+<li>🔧 <strong>Backend en développement</strong> : Authentification et
+base de données</li>
+<li>🚀 <strong>Prêt pour intégrations</strong> : OpenAI, Booking.com,
+Stripe</li>
+</ul>
+<h3 id="technologies-principales">Technologies principales</h3>
+<ul>
+<li><strong>Mobile</strong> : Expo/React Native avec TypeScript</li>
+<li><strong>Web</strong> : Next.js avec Tailwind CSS</li>
+<li><strong>Backend</strong> : Firebase (Auth + Firestore)</li>
+<li><strong>Architecture</strong> : Monorepo avec code partagé</li>
+</ul>
+<hr />
+<h2 id="présentation-du-projet">2. PRÉSENTATION DU PROJET</h2>
+<h3 id="concept-innovant">Concept innovant</h3>
+<p>SocialPlanr résout le problème classique de l’organisation
+d’événements de groupe en proposant une approche collaborative et
+intelligente :</p>
+<ol type="1">
+<li><strong>Collaboration démocratique</strong> : Vote sur dates, lieux,
+activités</li>
+<li><strong>Gestion financière intégrée</strong> : Suivi des dépenses et
+cagnotte</li>
+<li><strong>IA générative</strong> : Plans automatiques
+personnalisés</li>
+<li><strong>Intégrations externes</strong> : Hébergement, paiements,
+calendrier</li>
+</ol>
+<h3 id="public-cible">Public cible</h3>
+<ul>
+<li><strong>Groupes d’amis</strong> : Week-ends, voyages, soirées</li>
+<li><strong>Événements professionnels</strong> : Séminaires, team
+building</li>
+<li><strong>Associations</strong> : Sorties, événements
+communautaires</li>
+<li><strong>Familles</strong> : Vacances, réunions familiales</li>
+</ul>
+<h3 id="différenciation-concurrentielle">Différenciation
+concurrentielle</h3>
+<ul>
+<li><strong>Approche collaborative</strong> vs outils individuels</li>
+<li><strong>IA intégrée</strong> vs planification manuelle</li>
+<li><strong>Gestion financière</strong> vs outils séparés</li>
+<li><strong>Interface unifiée</strong> vs multiples applications</li>
+</ul>
+<hr />
+<h2 id="architecture-technique">3. ARCHITECTURE TECHNIQUE</h2>
+<h3 id="structure-monorepo">Structure monorepo</h3>
+<pre><code>SocialPlanr/
+├── mobile/          # Application mobile (Expo/React Native)
+├── web/            # Site web (Next.js)
+├── shared/         # Code partagé (types, hooks, composants)
+├── android/        # Configuration Android native
+├── ios/           # Configuration iOS native
+└── scripts/       # Scripts de build et déploiement</code></pre>
+<h3 id="architecture-mobile">Architecture mobile</h3>
+<ul>
+<li><strong>Framework</strong> : Expo SDK 53.0.20</li>
+<li><strong>Navigation</strong> : Expo Router avec tabs</li>
+<li><strong>État global</strong> : Context API (Auth,
+Notifications)</li>
+<li><strong>Base de données</strong> : Firebase Firestore temps
+réel</li>
+<li><strong>Authentification</strong> : Firebase Auth + Google
+OAuth</li>
+</ul>
+<h3 id="architecture-web">Architecture web</h3>
+<ul>
+<li><strong>Framework</strong> : Next.js 15.4.3</li>
+<li><strong>Styling</strong> : Tailwind CSS 4.0</li>
+<li><strong>Responsive</strong> : Mobile-first design</li>
+<li><strong>SEO</strong> : Métadonnées optimisées</li>
+<li><strong>Performance</strong> : Turbopack pour le développement</li>
+</ul>
+<h3 id="flux-de-données">Flux de données</h3>
+<pre class="mermaid"><code>graph TD
+    A[Utilisateur] --&gt; B[App Mobile/Web]
+    B --&gt; C[Firebase Auth]
+    B --&gt; D[Firestore DB]
+    B --&gt; E[OpenAI API]
+    B --&gt; F[Booking.com API]
+    B --&gt; G[Stripe API]
+    C --&gt; H[JWT Token]
+    D --&gt; I[Données temps réel]
+    E --&gt; J[Plans IA]
+    F --&gt; K[Hébergements]
+    G --&gt; L[Paiements]</code></pre>
+<hr />
+<h2 id="fonctionnalités-implémentées">4. FONCTIONNALITÉS
+IMPLÉMENTÉES</h2>
+<h3 id="authentification-et-profil">4.1 Authentification et profil</h3>
+<ul>
+<li>✅ <strong>Inscription/Connexion</strong> : Email + mot de
+passe</li>
+<li>✅ <strong>Google OAuth</strong> : Authentification sociale</li>
+<li>✅ <strong>Profil utilisateur</strong> : Données personnalisées</li>
+<li>✅ <strong>Gestion de session</strong> : Persistance
+automatique</li>
+<li>✅ <strong>Déconnexion sécurisée</strong> : Nettoyage des
+données</li>
+</ul>
+<h3 id="gestion-des-groupes">4.2 Gestion des groupes</h3>
+<ul>
+<li>✅ <strong>Création de groupes</strong> : Modal avec validation</li>
+<li>✅ <strong>Invitation de membres</strong> : Système
+d’invitation</li>
+<li>✅ <strong>Rôles et permissions</strong> : Admin/Membre</li>
+<li>✅ <strong>Statuts visuels</strong> :
+Actif/Planification/Terminé</li>
+<li>✅ <strong>Synchronisation temps réel</strong> : Firestore</li>
+</ul>
+<h3 id="gestion-des-événements">4.3 Gestion des événements</h3>
+<ul>
+<li>✅ <strong>Création d’événements</strong> : Formulaire détaillé</li>
+<li>✅ <strong>Statuts multiples</strong> : Planning/Vote/Confirmé/En
+cours/Terminé</li>
+<li>✅ <strong>Tags IA</strong> : Badges pour plans générés
+automatiquement</li>
+<li>✅ <strong>Intégration calendrier</strong> : Ajout aux
+calendriers</li>
+<li>✅ <strong>Participants</strong> : Gestion des participants</li>
+</ul>
+<h3 id="système-de-dépenses">4.4 Système de dépenses</h3>
+<ul>
+<li>✅ <strong>Dashboard financier</strong> : Vue d’ensemble</li>
+<li>✅ <strong>Catégories</strong> :
+Hébergement/Transport/Nourriture/Loisirs/Autre</li>
+<li>✅ <strong>Calcul automatique</strong> : Montant par personne</li>
+<li>✅ <strong>Statuts de paiement</strong> : En attente/Payé/Réglé</li>
+<li>✅ <strong>Balance utilisateur</strong> : “Vous devez” vs “On vous
+doit”</li>
+</ul>
+<h3 id="interface-utilisateur">4.5 Interface utilisateur</h3>
+<ul>
+<li>✅ <strong>Onboarding animé</strong> : 4 slides avec
+transitions</li>
+<li>✅ <strong>Navigation tabs</strong> : 5 onglets principaux</li>
+<li>✅ <strong>Design cohérent</strong> : Identité visuelle
+SocialPlanr</li>
+<li>✅ <strong>Animations fluides</strong> : React Native Animated</li>
+<li>✅ <strong>États vides</strong> : Messages informatifs</li>
+</ul>
+<hr />
+<h2 id="interface-utilisateur-1">5. INTERFACE UTILISATEUR</h2>
+<h3 id="écrans-principaux">5.1 Écrans principaux</h3>
+<h4 id="dashboard-onglet-principal">Dashboard (Onglet principal)</h4>
+<ul>
+<li><strong>Vue d’ensemble</strong> : Statistiques et événements
+récents</li>
+<li><strong>Actions rapides</strong> : Créer groupe/événement</li>
+<li><strong>Événements à venir</strong> : Liste avec statuts</li>
+<li><strong>Animations d’entrée</strong> : Fade et slide effects</li>
+<li><strong>Pull-to-refresh</strong> : Actualisation des données</li>
+</ul>
+<h4 id="groupes">Groupes</h4>
+<ul>
+<li><strong>Liste des groupes</strong> : 3 groupes d’exemple</li>
+<li><strong>Statuts visuels</strong> : Couleurs et badges</li>
+<li><strong>Nombre de membres</strong> : Affichage dynamique</li>
+<li><strong>Bouton de création</strong> : Modal intégré</li>
+<li><strong>Navigation vers détails</strong> : Tap sur groupe</li>
+</ul>
+<h4 id="événements">Événements</h4>
+<ul>
+<li><strong>Liste des événements</strong> : 3 événements d’exemple</li>
+<li><strong>Tags IA</strong> : Badges “🤖 IA” pour plans générés</li>
+<li><strong>Statuts colorés</strong> : Vote en
+cours/Confirmé/Terminé</li>
+<li><strong>Intégration calendrier</strong> : Ajout aux calendriers</li>
+<li><strong>Détails complets</strong> : Date, lieu, participants</li>
+</ul>
+<h4 id="dépenses">Dépenses</h4>
+<ul>
+<li><strong>Dashboard financier</strong> : Balance et totaux</li>
+<li><strong>Catégories visuelles</strong> : Icônes et couleurs</li>
+<li><strong>4 dépenses d’exemple</strong> : Hôtel, restaurant,
+transport, loisirs</li>
+<li><strong>Calculs automatiques</strong> : Montant par personne</li>
+<li><strong>Statuts de paiement</strong> : Gestion des états</li>
+</ul>
+<h4 id="profil">Profil</h4>
+<ul>
+<li><strong>Informations utilisateur</strong> : Nom, email, avatar</li>
+<li><strong>Statistiques</strong> : 8 groupes, 15 événements</li>
+<li><strong>Paramètres</strong> : Switches pour notifications</li>
+<li><strong>Actions</strong> : Éditer profil, inviter amis</li>
+<li><strong>Zone de danger</strong> : Supprimer compte</li>
+</ul>
+<h3 id="composants-réutilisables">5.2 Composants réutilisables</h3>
+<h4 id="modals">Modals</h4>
+<ul>
+<li><strong>CreateEventModal</strong> : Formulaire de création
+d’événement</li>
+<li><strong>CreateGroupModal</strong> : Formulaire de création de
+groupe</li>
+<li><strong>AddExpenseModal</strong> : Ajout de dépense</li>
+<li><strong>EditProfileModal</strong> : Édition du profil</li>
+<li><strong>InviteFriendsModal</strong> : Invitation d’amis</li>
+</ul>
+<h4 id="ui-components">UI Components</h4>
+<ul>
+<li><strong>ThemedView</strong> : Conteneur avec thème</li>
+<li><strong>ThemedText</strong> : Texte avec styles cohérents</li>
+<li><strong>IconSymbol</strong> : Icônes système</li>
+<li><strong>Collapsible</strong> : Sections repliables</li>
+<li><strong>NotificationBanner</strong> : Bannières de notification</li>
+</ul>
+<h3 id="design-system">5.3 Design System</h3>
+<h4 id="couleurs">Couleurs</h4>
+<ul>
+<li><strong>Primaire</strong> : Bleu (#3B82F6)</li>
+<li><strong>Secondaire</strong> : Violet (#8B5CF6)</li>
+<li><strong>Succès</strong> : Vert (#10B981)</li>
+<li><strong>Avertissement</strong> : Orange (#F59E0B)</li>
+<li><strong>Erreur</strong> : Rouge (#EF4444)</li>
+</ul>
+<h4 id="typographie">Typographie</h4>
+<ul>
+<li><strong>Titres</strong> : Font-bold, tailles 2xl-6xl</li>
+<li><strong>Corps</strong> : Font-normal, tailles base-lg</li>
+<li><strong>Captions</strong> : Font-medium, tailles sm-xs</li>
+</ul>
+<h4 id="espacement">Espacement</h4>
+<ul>
+<li><strong>Petit</strong> : 2, 4, 8px</li>
+<li><strong>Moyen</strong> : 12, 16, 20px</li>
+<li><strong>Grand</strong> : 24, 32, 48px</li>
+</ul>
+<hr />
+<h2 id="technologies-utilisées">6. TECHNOLOGIES UTILISÉES</h2>
+<h3 id="frontend-mobile">6.1 Frontend Mobile</h3>
+<h4 id="react-native-expo">React Native + Expo</h4>
+<ul>
+<li><strong>Version</strong> : 0.79.5</li>
+<li><strong>SDK Expo</strong> : 53.0.20</li>
+<li><strong>Avantages</strong> : Développement rapide, hot reload</li>
+<li><strong>Compatibilité</strong> : iOS et Android</li>
+<li><strong>Performance</strong> : Native rendering</li>
+</ul>
+<h4 id="navigation">Navigation</h4>
+<ul>
+<li><strong>Expo Router</strong> : Navigation basée sur les
+fichiers</li>
+<li><strong>React Navigation</strong> : Navigation entre écrans</li>
+<li><strong>Tabs</strong> : Navigation par onglets</li>
+<li><strong>Stack</strong> : Navigation par pile</li>
+</ul>
+<h4 id="animations">Animations</h4>
+<ul>
+<li><strong>React Native Animated</strong> : Animations fluides</li>
+<li><strong>Reanimated</strong> : Animations performantes</li>
+<li><strong>Haptics</strong> : Retour tactile</li>
+<li><strong>Transitions</strong> : Fade, slide, scale</li>
+</ul>
+<h3 id="frontend-web">6.2 Frontend Web</h3>
+<h4 id="next.js">Next.js</h4>
+<ul>
+<li><strong>Version</strong> : 15.4.3</li>
+<li><strong>App Router</strong> : Nouvelle architecture</li>
+<li><strong>SSR/SSG</strong> : Rendu côté serveur</li>
+<li><strong>API Routes</strong> : Backend intégré</li>
+<li><strong>Optimisation</strong> : Image, font, bundle</li>
+</ul>
+<h4 id="tailwind-css">Tailwind CSS</h4>
+<ul>
+<li><strong>Version</strong> : 4.0</li>
+<li><strong>Utility-first</strong> : Classes utilitaires</li>
+<li><strong>Responsive</strong> : Breakpoints automatiques</li>
+<li><strong>Dark mode</strong> : Support du thème sombre</li>
+<li><strong>Customization</strong> : Configuration personnalisée</li>
+</ul>
+<h3 id="backend-et-services">6.3 Backend et Services</h3>
+<h4 id="firebase">Firebase</h4>
+<ul>
+<li><strong>Auth</strong> : Authentification sécurisée</li>
+<li><strong>Firestore</strong> : Base de données NoSQL</li>
+<li><strong>Realtime</strong> : Synchronisation temps réel</li>
+<li><strong>Offline</strong> : Support hors ligne</li>
+<li><strong>Security</strong> : Règles de sécurité</li>
+</ul>
+<h4 id="configuration-firebase">Configuration Firebase</h4>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode typescript"><code class="sourceCode typescript"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> firebaseConfig <span class="op">=</span> {</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  apiKey<span class="op">:</span> <span class="st">&quot;AIzaSyD5xRTGjTPtJ8N_pC4Jha0wNZzJFNQWt4A&quot;</span><span class="op">,</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  authDomain<span class="op">:</span> <span class="st">&quot;socialplanr-f09f1.firebaseapp.com&quot;</span><span class="op">,</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  projectId<span class="op">:</span> <span class="st">&quot;socialplanr-f09f1&quot;</span><span class="op">,</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  storageBucket<span class="op">:</span> <span class="st">&quot;socialplanr-f09f1.firebasestorage.app&quot;</span><span class="op">,</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  messagingSenderId<span class="op">:</span> <span class="st">&quot;1086885031434&quot;</span><span class="op">,</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  appId<span class="op">:</span> <span class="st">&quot;1:1086885031434:web:a0816d31540c650fb679f3&quot;</span><span class="op">,</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  measurementId<span class="op">:</span> <span class="st">&quot;G-8WKPR3YSR6&quot;</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>}<span class="op">;</span></span></code></pre></div>
+<h3 id="outils-de-développement">6.4 Outils de développement</h3>
+<h4 id="typescript">TypeScript</h4>
+<ul>
+<li><strong>Typage statique</strong> : Détection d’erreurs</li>
+<li><strong>IntelliSense</strong> : Autocomplétion</li>
+<li><strong>Refactoring</strong> : Refactoring sécurisé</li>
+<li><strong>Documentation</strong> : Types comme documentation</li>
+</ul>
+<h4 id="eslint-prettier">ESLint + Prettier</h4>
+<ul>
+<li><strong>Linting</strong> : Détection d’erreurs</li>
+<li><strong>Formatting</strong> : Code formaté</li>
+<li><strong>Rules</strong> : Règles personnalisées</li>
+<li><strong>Integration</strong> : Intégration IDE</li>
+</ul>
+<h4 id="build-tools">Build Tools</h4>
+<ul>
+<li><strong>EAS Build</strong> : Build cloud Expo</li>
+<li><strong>Metro</strong> : Bundler React Native</li>
+<li><strong>Webpack</strong> : Bundler Next.js</li>
+<li><strong>Babel</strong> : Transpilation</li>
+</ul>
+<hr />
+<h2 id="structure-du-code">7. STRUCTURE DU CODE</h2>
+<h3 id="organisation-des-dossiers">7.1 Organisation des dossiers</h3>
+<h4 id="mobile-app-structure">Mobile App Structure</h4>
+<pre><code>mobile/
+├── app/                    # Pages (Expo Router)
+│   ├── (tabs)/           # Onglets principaux
+│   ├── login.tsx         # Page de connexion
+│   ├── signup.tsx        # Page d&#39;inscription
+│   └── onboarding.tsx    # Page d&#39;onboarding
+├── components/            # Composants réutilisables
+│   ├── ui/              # Composants UI
+│   └── modals/          # Modals
+├── contexts/             # Context API
+├── config/              # Configuration
+├── hooks/               # Hooks personnalisés
+├── utils/               # Utilitaires
+└── assets/              # Ressources</code></pre>
+<h4 id="web-app-structure">Web App Structure</h4>
+<pre><code>web/
+├── src/
+│   ├── app/             # Pages (Next.js App Router)
+│   ├── components/      # Composants
+│   └── styles/         # Styles
+├── public/              # Assets statiques
+└── package.json         # Dépendances</code></pre>
+<h3 id="patterns-architecturaux">7.2 Patterns architecturaux</h3>
+<h4 id="context-api">Context API</h4>
+<div class="sourceCode" id="cb6"><pre
+class="sourceCode typescript"><code class="sourceCode typescript"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">// AuthContext.tsx</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="kw">interface</span> AuthContextType {</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  user<span class="op">:</span> User <span class="op">|</span> <span class="dt">null</span><span class="op">;</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  userProfile<span class="op">:</span> UserProfile <span class="op">|</span> <span class="dt">null</span><span class="op">;</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  loading<span class="op">:</span> <span class="dt">boolean</span><span class="op">;</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  login<span class="op">:</span> (email<span class="op">:</span> <span class="dt">string</span><span class="op">,</span> password<span class="op">:</span> <span class="dt">string</span>) <span class="kw">=&gt;</span> <span class="bu">Promise</span><span class="op">&lt;</span><span class="dt">void</span><span class="op">&gt;;</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  signup<span class="op">:</span> (email<span class="op">:</span> <span class="dt">string</span><span class="op">,</span> password<span class="op">:</span> <span class="dt">string</span><span class="op">,</span> firstName<span class="op">:</span> <span class="dt">string</span><span class="op">,</span> lastName<span class="op">:</span> <span class="dt">string</span>) <span class="kw">=&gt;</span> <span class="bu">Promise</span><span class="op">&lt;</span><span class="dt">void</span><span class="op">&gt;;</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>  signInWithGoogle<span class="op">:</span> () <span class="kw">=&gt;</span> <span class="bu">Promise</span><span class="op">&lt;</span><span class="dt">void</span><span class="op">&gt;;</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>  logout<span class="op">:</span> () <span class="kw">=&gt;</span> <span class="bu">Promise</span><span class="op">&lt;</span><span class="dt">void</span><span class="op">&gt;;</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>  refreshUserProfile<span class="op">:</span> () <span class="kw">=&gt;</span> <span class="bu">Promise</span><span class="op">&lt;</span><span class="dt">void</span><span class="op">&gt;;</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<h4 id="custom-hooks">Custom Hooks</h4>
+<div class="sourceCode" id="cb7"><pre
+class="sourceCode typescript"><code class="sourceCode typescript"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co">// useAuth.ts</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="im">export</span> <span class="kw">const</span> useAuth <span class="op">=</span> () <span class="kw">=&gt;</span> {</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> context <span class="op">=</span> <span class="fu">useContext</span>(AuthContext)<span class="op">;</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (context <span class="op">===</span> <span class="kw">undefined</span>) {</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">throw</span> <span class="kw">new</span> <span class="bu">Error</span>(<span class="st">&#39;useAuth must be used within an AuthProvider&#39;</span>)<span class="op">;</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> context<span class="op">;</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>}<span class="op">;</span></span></code></pre></div>
+<h4 id="typescript-interfaces">TypeScript Interfaces</h4>
+<div class="sourceCode" id="cb8"><pre
+class="sourceCode typescript"><code class="sourceCode typescript"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">interface</span> <span class="bu">Event</span> {</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  id<span class="op">:</span> <span class="dt">string</span><span class="op">;</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  title<span class="op">:</span> <span class="dt">string</span><span class="op">;</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  description<span class="op">?:</span> <span class="dt">string</span><span class="op">;</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  groupId<span class="op">?:</span> <span class="dt">string</span><span class="op">;</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  status<span class="op">:</span> <span class="st">&#39;planning&#39;</span> <span class="op">|</span> <span class="st">&#39;voting&#39;</span> <span class="op">|</span> <span class="st">&#39;confirmed&#39;</span> <span class="op">|</span> <span class="st">&#39;in_progress&#39;</span> <span class="op">|</span> <span class="st">&#39;completed&#39;</span><span class="op">;</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>  date<span class="op">:</span> <span class="bu">Date</span><span class="op">;</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>  location<span class="op">?:</span> <span class="dt">string</span><span class="op">;</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>  attendees<span class="op">:</span> <span class="dt">string</span>[]<span class="op">;</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>  createdBy<span class="op">:</span> <span class="dt">string</span><span class="op">;</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>  createdAt<span class="op">:</span> <span class="bu">Date</span><span class="op">;</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<h3 id="gestion-détat">7.3 Gestion d’état</h3>
+<h4 id="état-local-usestate">État local (useState)</h4>
+<ul>
+<li><strong>Formulaires</strong> : Données de saisie</li>
+<li><strong>Modals</strong> : État d’ouverture/fermeture</li>
+<li><strong>Loading</strong> : États de chargement</li>
+<li><strong>UI State</strong> : États d’interface</li>
+</ul>
+<h4 id="état-global-context">État global (Context)</h4>
+<ul>
+<li><strong>Authentification</strong> : Utilisateur connecté</li>
+<li><strong>Notifications</strong> : Paramètres et compteurs</li>
+<li><strong>Thème</strong> : Mode sombre/clair</li>
+<li><strong>Navigation</strong> : État de navigation</li>
+</ul>
+<h4 id="état-serveur-firebase">État serveur (Firebase)</h4>
+<ul>
+<li><strong>Données utilisateur</strong> : Profils et préférences</li>
+<li><strong>Groupes</strong> : Membres et permissions</li>
+<li><strong>Événements</strong> : Détails et participants</li>
+<li><strong>Dépenses</strong> : Transactions et balances</li>
+</ul>
+<hr />
+<h2 id="état-actuel-du-développement">8. ÉTAT ACTUEL DU
+DÉVELOPPEMENT</h2>
+<h3 id="fonctionnalités-complétées">8.1 Fonctionnalités complétées
+✅</h3>
+<h4 id="interface-utilisateur-2">Interface utilisateur</h4>
+<ul>
+<li><strong>100% des écrans</strong> : 5 onglets principaux</li>
+<li><strong>Navigation complète</strong> : Tabs et stack navigation</li>
+<li><strong>Design cohérent</strong> : Identité visuelle unifiée</li>
+<li><strong>Animations fluides</strong> : Transitions et
+micro-interactions</li>
+<li><strong>Responsive</strong> : Adaptation mobile et web</li>
+</ul>
+<h4 id="authentification">Authentification</h4>
+<ul>
+<li><strong>Firebase Auth</strong> : Inscription/connexion</li>
+<li><strong>Google OAuth</strong> : Authentification sociale</li>
+<li><strong>Gestion de session</strong> : Persistance automatique</li>
+<li><strong>Sécurité</strong> : Validation et protection</li>
+</ul>
+<h4 id="base-de-données">Base de données</h4>
+<ul>
+<li><strong>Firestore</strong> : Structure NoSQL optimisée</li>
+<li><strong>Collections</strong> : users, groups, events, expenses</li>
+<li><strong>Règles de sécurité</strong> : Accès contrôlé</li>
+<li><strong>Temps réel</strong> : Synchronisation automatique</li>
+</ul>
+<h4 id="build-et-déploiement">Build et déploiement</h4>
+<ul>
+<li><strong>APK Android</strong> : 78MB, installable</li>
+<li><strong>Expo Go</strong> : Développement et test</li>
+<li><strong>Site web</strong> : Présentation et téléchargement</li>
+<li><strong>Scripts automatisés</strong> : Build et déploiement</li>
+</ul>
+<h3 id="fonctionnalités-en-développement">8.2 Fonctionnalités en
+développement 🔧</h3>
+<h4 id="backend-avancé">Backend avancé</h4>
+<ul>
+<li><strong>API REST</strong> : Endpoints pour intégrations</li>
+<li><strong>GraphQL</strong> : Requêtes optimisées</li>
+<li><strong>Webhooks</strong> : Notifications externes</li>
+<li><strong>Rate limiting</strong> : Protection contre l’abus</li>
+</ul>
+<h4 id="intégrations-externes">Intégrations externes</h4>
+<ul>
+<li><strong>OpenAI API</strong> : Génération de plans IA</li>
+<li><strong>Booking.com API</strong> : Suggestions d’hébergement</li>
+<li><strong>Stripe API</strong> : Paiements et cagnotte</li>
+<li><strong>Google Calendar</strong> : Synchronisation calendrier</li>
+</ul>
+<h4 id="fonctionnalités-avancées">Fonctionnalités avancées</h4>
+<ul>
+<li><strong>Système de votes</strong> : Votes collaboratifs temps
+réel</li>
+<li><strong>Notifications push</strong> : Notifications en temps
+réel</li>
+<li><strong>Chat intégré</strong> : Communication en groupe</li>
+<li><strong>Partage de fichiers</strong> : Photos et documents</li>
+</ul>
+<h3 id="métriques-de-développement">8.3 Métriques de développement</h3>
+<h4 id="code">Code</h4>
+<ul>
+<li><strong>Lignes de code</strong> : ~15,000 lignes</li>
+<li><strong>Composants</strong> : 25+ composants réutilisables</li>
+<li><strong>Types TypeScript</strong> : 50+ interfaces</li>
+<li><strong>Tests</strong> : 0% (à implémenter)</li>
+</ul>
+<h4 id="performance">Performance</h4>
+<ul>
+<li><strong>Taille APK</strong> : 78MB</li>
+<li><strong>Temps de build</strong> : ~5 minutes</li>
+<li><strong>Temps de démarrage</strong> : &lt;3 secondes</li>
+<li><strong>Mémoire</strong> : Optimisé pour mobile</li>
+</ul>
+<h4 id="qualité">Qualité</h4>
+<ul>
+<li><strong>ESLint</strong> : 0 erreurs</li>
+<li><strong>TypeScript</strong> : 100% typé</li>
+<li><strong>Accessibilité</strong> : Partiellement implémentée</li>
+<li><strong>Documentation</strong> : 80% complète</li>
+</ul>
+<hr />
+<h2 id="roadmap-et-prochaines-étapes">9. ROADMAP ET PROCHAINES
+ÉTAPES</h2>
+<h3 id="phase-2---backend-api-q1-2024">9.1 Phase 2 - Backend &amp; API
+(Q1 2024)</h3>
+<h4 id="authentification-avancée">Authentification avancée</h4>
+<ul>
+<li><strong>Supabase Auth</strong> : Migration depuis Firebase</li>
+<li><strong>Multi-provider</strong> : Google, Apple, Facebook</li>
+<li><strong>JWT tokens</strong> : Gestion sécurisée</li>
+<li><strong>Refresh tokens</strong> : Renouvellement automatique</li>
+</ul>
+<h4 id="base-de-données-1">Base de données</h4>
+<ul>
+<li><strong>PostgreSQL</strong> : Migration depuis Firestore</li>
+<li><strong>Migrations</strong> : Gestion des versions</li>
+<li><strong>Backup</strong> : Sauvegarde automatique</li>
+<li><strong>Monitoring</strong> : Surveillance des performances</li>
+</ul>
+<h4 id="api-rest">API REST</h4>
+<ul>
+<li><strong>Endpoints</strong> : CRUD complet</li>
+<li><strong>Validation</strong> : Joi ou Zod</li>
+<li><strong>Documentation</strong> : Swagger/OpenAPI</li>
+<li><strong>Rate limiting</strong> : Protection API</li>
+</ul>
+<h3 id="phase-3---fonctionnalités-avancées-q2-2024">9.2 Phase 3 -
+Fonctionnalités avancées (Q2 2024)</h3>
+<h4 id="ia-et-automatisation">IA et automatisation</h4>
+<ul>
+<li><strong>OpenAI GPT-4</strong> : Génération de plans</li>
+<li><strong>Claude API</strong> : Suggestions d’activités</li>
+<li><strong>Machine Learning</strong> : Recommandations
+personnalisées</li>
+<li><strong>NLP</strong> : Analyse des préférences</li>
+</ul>
+<h4 id="système-de-votes">Système de votes</h4>
+<ul>
+<li><strong>Votes temps réel</strong> : WebSocket</li>
+<li><strong>Algorithmes</strong> : Majorité, consensus</li>
+<li><strong>Historique</strong> : Traçabilité des décisions</li>
+<li><strong>Notifications</strong> : Alertes de vote</li>
+</ul>
+<h4 id="gestion-financière">Gestion financière</h4>
+<ul>
+<li><strong>Stripe Connect</strong> : Paiements entre utilisateurs</li>
+<li><strong>Cagnotte</strong> : Gestion collective</li>
+<li><strong>Remboursements</strong> : Calcul automatique</li>
+<li><strong>Rapports</strong> : Analytics financiers</li>
+</ul>
+<h3 id="phase-4---distribution-q3-2024">9.3 Phase 4 - Distribution (Q3
+2024)</h3>
+<h4 id="stores-dapplications">Stores d’applications</h4>
+<ul>
+<li><strong>Google Play Store</strong> : Publication Android</li>
+<li><strong>App Store</strong> : Publication iOS</li>
+<li><strong>Beta testing</strong> : Tests utilisateurs</li>
+<li><strong>Analytics</strong> : Suivi d’utilisation</li>
+</ul>
+<h4 id="déploiement-production">Déploiement production</h4>
+<ul>
+<li><strong>Netlify</strong> : Site web production</li>
+<li><strong>Vercel</strong> : API production</li>
+<li><strong>CDN</strong> : Distribution globale</li>
+<li><strong>Monitoring</strong> : Surveillance 24/7</li>
+</ul>
+<h4 id="marketing-et-acquisition">Marketing et acquisition</h4>
+<ul>
+<li><strong>SEO</strong> : Optimisation référencement</li>
+<li><strong>ASO</strong> : Optimisation stores</li>
+<li><strong>Content Marketing</strong> : Blog et guides</li>
+<li><strong>Social Media</strong> : Présence réseaux sociaux</li>
+</ul>
+<h3 id="phase-5---évolution-q4-2024">9.4 Phase 5 - Évolution (Q4
+2024)</h3>
+<h4 id="fonctionnalités-premium">Fonctionnalités premium</h4>
+<ul>
+<li><strong>Plans payants</strong> : Freemium model</li>
+<li><strong>Fonctionnalités avancées</strong> : IA premium</li>
+<li><strong>Support prioritaire</strong> : Service client</li>
+<li><strong>Analytics avancés</strong> : Insights détaillés</li>
+</ul>
+<h4 id="intégrations-tierces">Intégrations tierces</h4>
+<ul>
+<li><strong>Slack</strong> : Notifications équipe</li>
+<li><strong>Discord</strong> : Intégration communautés</li>
+<li><strong>Trello</strong> : Gestion de projet</li>
+<li><strong>Zapier</strong> : Automatisations</li>
+</ul>
+<h4 id="expansion-internationale">Expansion internationale</h4>
+<ul>
+<li><strong>Multi-langues</strong> : i18n complet</li>
+<li><strong>Devises</strong> : Support multi-devises</li>
+<li><strong>Régions</strong> : Adaptation locale</li>
+<li><strong>Support</strong> : Support multilingue</li>
+</ul>
+<hr />
+<h2 id="analyse-technique-détaillée">10. ANALYSE TECHNIQUE
+DÉTAILLÉE</h2>
+<h3 id="architecture-de-données">10.1 Architecture de données</h3>
+<h4 id="modèle-de-données-firestore">Modèle de données Firestore</h4>
+<div class="sourceCode" id="cb9"><pre
+class="sourceCode typescript"><code class="sourceCode typescript"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Collection: users</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="kw">interface</span> User {</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  uid<span class="op">:</span> <span class="dt">string</span><span class="op">;</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  email<span class="op">:</span> <span class="dt">string</span><span class="op">;</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  firstName<span class="op">:</span> <span class="dt">string</span><span class="op">;</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  lastName<span class="op">:</span> <span class="dt">string</span><span class="op">;</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>  displayName<span class="op">:</span> <span class="dt">string</span><span class="op">;</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>  createdAt<span class="op">:</span> <span class="bu">Date</span><span class="op">;</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>  avatar<span class="op">?:</span> <span class="dt">string</span><span class="op">;</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>  preferences<span class="op">:</span> UserPreferences<span class="op">;</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="co">// Collection: groups</span></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a><span class="kw">interface</span> Group {</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>  id<span class="op">:</span> <span class="dt">string</span><span class="op">;</span></span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>  name<span class="op">:</span> <span class="dt">string</span><span class="op">;</span></span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>  description<span class="op">?:</span> <span class="dt">string</span><span class="op">;</span></span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>  members<span class="op">:</span> <span class="dt">string</span>[]<span class="op">;</span> <span class="co">// User IDs</span></span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>  admins<span class="op">:</span> <span class="dt">string</span>[]<span class="op">;</span> <span class="co">// User IDs</span></span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>  status<span class="op">:</span> <span class="st">&#39;active&#39;</span> <span class="op">|</span> <span class="st">&#39;planning&#39;</span> <span class="op">|</span> <span class="st">&#39;completed&#39;</span><span class="op">;</span></span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>  createdAt<span class="op">:</span> <span class="bu">Date</span><span class="op">;</span></span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>  updatedAt<span class="op">:</span> <span class="bu">Date</span><span class="op">;</span></span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a><span class="co">// Collection: events</span></span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a><span class="kw">interface</span> <span class="bu">Event</span> {</span>
+<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a>  id<span class="op">:</span> <span class="dt">string</span><span class="op">;</span></span>
+<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a>  title<span class="op">:</span> <span class="dt">string</span><span class="op">;</span></span>
+<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a>  description<span class="op">?:</span> <span class="dt">string</span><span class="op">;</span></span>
+<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a>  groupId<span class="op">:</span> <span class="dt">string</span><span class="op">;</span></span>
+<span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a>  status<span class="op">:</span> <span class="st">&#39;planning&#39;</span> <span class="op">|</span> <span class="st">&#39;voting&#39;</span> <span class="op">|</span> <span class="st">&#39;confirmed&#39;</span> <span class="op">|</span> <span class="st">&#39;in_progress&#39;</span> <span class="op">|</span> <span class="st">&#39;completed&#39;</span><span class="op">;</span></span>
+<span id="cb9-32"><a href="#cb9-32" aria-hidden="true" tabindex="-1"></a>  date<span class="op">:</span> <span class="bu">Date</span><span class="op">;</span></span>
+<span id="cb9-33"><a href="#cb9-33" aria-hidden="true" tabindex="-1"></a>  location<span class="op">?:</span> <span class="dt">string</span><span class="op">;</span></span>
+<span id="cb9-34"><a href="#cb9-34" aria-hidden="true" tabindex="-1"></a>  attendees<span class="op">:</span> <span class="dt">string</span>[]<span class="op">;</span> <span class="co">// User IDs</span></span>
+<span id="cb9-35"><a href="#cb9-35" aria-hidden="true" tabindex="-1"></a>  createdBy<span class="op">:</span> <span class="dt">string</span><span class="op">;</span> <span class="co">// User ID</span></span>
+<span id="cb9-36"><a href="#cb9-36" aria-hidden="true" tabindex="-1"></a>  createdAt<span class="op">:</span> <span class="bu">Date</span><span class="op">;</span></span>
+<span id="cb9-37"><a href="#cb9-37" aria-hidden="true" tabindex="-1"></a>  aiGenerated<span class="op">?:</span> <span class="dt">boolean</span><span class="op">;</span></span>
+<span id="cb9-38"><a href="#cb9-38" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb9-39"><a href="#cb9-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-40"><a href="#cb9-40" aria-hidden="true" tabindex="-1"></a><span class="co">// Collection: expenses</span></span>
+<span id="cb9-41"><a href="#cb9-41" aria-hidden="true" tabindex="-1"></a><span class="kw">interface</span> Expense {</span>
+<span id="cb9-42"><a href="#cb9-42" aria-hidden="true" tabindex="-1"></a>  id<span class="op">:</span> <span class="dt">string</span><span class="op">;</span></span>
+<span id="cb9-43"><a href="#cb9-43" aria-hidden="true" tabindex="-1"></a>  title<span class="op">:</span> <span class="dt">string</span><span class="op">;</span></span>
+<span id="cb9-44"><a href="#cb9-44" aria-hidden="true" tabindex="-1"></a>  amount<span class="op">:</span> <span class="dt">number</span><span class="op">;</span></span>
+<span id="cb9-45"><a href="#cb9-45" aria-hidden="true" tabindex="-1"></a>  category<span class="op">:</span> <span class="st">&#39;accommodation&#39;</span> <span class="op">|</span> <span class="st">&#39;transport&#39;</span> <span class="op">|</span> <span class="st">&#39;food&#39;</span> <span class="op">|</span> <span class="st">&#39;entertainment&#39;</span> <span class="op">|</span> <span class="st">&#39;other&#39;</span><span class="op">;</span></span>
+<span id="cb9-46"><a href="#cb9-46" aria-hidden="true" tabindex="-1"></a>  description<span class="op">?:</span> <span class="dt">string</span><span class="op">;</span></span>
+<span id="cb9-47"><a href="#cb9-47" aria-hidden="true" tabindex="-1"></a>  groupId<span class="op">?:</span> <span class="dt">string</span><span class="op">;</span></span>
+<span id="cb9-48"><a href="#cb9-48" aria-hidden="true" tabindex="-1"></a>  eventId<span class="op">?:</span> <span class="dt">string</span><span class="op">;</span></span>
+<span id="cb9-49"><a href="#cb9-49" aria-hidden="true" tabindex="-1"></a>  paidBy<span class="op">:</span> <span class="dt">string</span><span class="op">;</span> <span class="co">// User ID</span></span>
+<span id="cb9-50"><a href="#cb9-50" aria-hidden="true" tabindex="-1"></a>  participants<span class="op">:</span> <span class="dt">string</span>[]<span class="op">;</span> <span class="co">// User IDs</span></span>
+<span id="cb9-51"><a href="#cb9-51" aria-hidden="true" tabindex="-1"></a>  date<span class="op">:</span> <span class="bu">Date</span><span class="op">;</span></span>
+<span id="cb9-52"><a href="#cb9-52" aria-hidden="true" tabindex="-1"></a>  status<span class="op">:</span> <span class="st">&#39;pending&#39;</span> <span class="op">|</span> <span class="st">&#39;paid&#39;</span> <span class="op">|</span> <span class="st">&#39;settled&#39;</span><span class="op">;</span></span>
+<span id="cb9-53"><a href="#cb9-53" aria-hidden="true" tabindex="-1"></a>  createdBy<span class="op">:</span> <span class="dt">string</span><span class="op">;</span> <span class="co">// User ID</span></span>
+<span id="cb9-54"><a href="#cb9-54" aria-hidden="true" tabindex="-1"></a>  createdAt<span class="op">:</span> <span class="bu">Date</span><span class="op">;</span></span>
+<span id="cb9-55"><a href="#cb9-55" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<h4 id="règles-de-sécurité-firestore">Règles de sécurité Firestore</h4>
+<div class="sourceCode" id="cb10"><pre
+class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>rules_version <span class="op">=</span> <span class="st">&#39;2&#39;</span><span class="op">;</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>service cloud<span class="op">.</span><span class="at">firestore</span> {</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  match <span class="op">/</span>databases<span class="op">/</span>{database}<span class="ss">/documents {</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="ss">    // Users can read/write</span> their own data</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    match <span class="op">/</span>users<span class="op">/</span>{userId} {</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>      allow read<span class="op">,</span> <span class="dt">write</span><span class="op">:</span> <span class="cf">if</span> request<span class="op">.</span><span class="at">auth</span> <span class="op">!=</span> <span class="kw">null</span> <span class="op">&amp;&amp;</span> request<span class="op">.</span><span class="at">auth</span><span class="op">.</span><span class="at">uid</span> <span class="op">==</span> userId<span class="op">;</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Groups: members can read, admins can write</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>    match <span class="op">/</span>groups<span class="op">/</span>{groupId} {</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>      allow <span class="dt">read</span><span class="op">:</span> <span class="cf">if</span> request<span class="op">.</span><span class="at">auth</span> <span class="op">!=</span> <span class="kw">null</span> <span class="op">&amp;&amp;</span> </span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>        request<span class="op">.</span><span class="at">auth</span><span class="op">.</span><span class="at">uid</span> <span class="kw">in</span> resource<span class="op">.</span><span class="at">data</span><span class="op">.</span><span class="at">members</span><span class="op">;</span></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>      allow <span class="dt">write</span><span class="op">:</span> <span class="cf">if</span> request<span class="op">.</span><span class="at">auth</span> <span class="op">!=</span> <span class="kw">null</span> <span class="op">&amp;&amp;</span> </span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>        request<span class="op">.</span><span class="at">auth</span><span class="op">.</span><span class="at">uid</span> <span class="kw">in</span> resource<span class="op">.</span><span class="at">data</span><span class="op">.</span><span class="at">admins</span><span class="op">;</span></span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Events: attendees can read, creators can write</span></span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>    match <span class="op">/</span>events<span class="op">/</span>{eventId} {</span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>      allow <span class="dt">read</span><span class="op">:</span> <span class="cf">if</span> request<span class="op">.</span><span class="at">auth</span> <span class="op">!=</span> <span class="kw">null</span> <span class="op">&amp;&amp;</span> </span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>        request<span class="op">.</span><span class="at">auth</span><span class="op">.</span><span class="at">uid</span> <span class="kw">in</span> resource<span class="op">.</span><span class="at">data</span><span class="op">.</span><span class="at">attendees</span><span class="op">;</span></span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>      allow <span class="dt">write</span><span class="op">:</span> <span class="cf">if</span> request<span class="op">.</span><span class="at">auth</span> <span class="op">!=</span> <span class="kw">null</span> <span class="op">&amp;&amp;</span> </span>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a>        request<span class="op">.</span><span class="at">auth</span><span class="op">.</span><span class="at">uid</span> <span class="op">==</span> resource<span class="op">.</span><span class="at">data</span><span class="op">.</span><span class="at">createdBy</span><span class="op">;</span></span>
+<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Expenses: participants can read/write</span></span>
+<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a>    match <span class="op">/</span>expenses<span class="op">/</span>{expenseId} {</span>
+<span id="cb10-27"><a href="#cb10-27" aria-hidden="true" tabindex="-1"></a>      allow read<span class="op">,</span> <span class="dt">write</span><span class="op">:</span> <span class="cf">if</span> request<span class="op">.</span><span class="at">auth</span> <span class="op">!=</span> <span class="kw">null</span> <span class="op">&amp;&amp;</span> </span>
+<span id="cb10-28"><a href="#cb10-28" aria-hidden="true" tabindex="-1"></a>        request<span class="op">.</span><span class="at">auth</span><span class="op">.</span><span class="at">uid</span> <span class="kw">in</span> resource<span class="op">.</span><span class="at">data</span><span class="op">.</span><span class="at">participants</span><span class="op">;</span></span>
+<span id="cb10-29"><a href="#cb10-29" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb10-30"><a href="#cb10-30" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb10-31"><a href="#cb10-31" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<h3 id="performance-et-optimisation">10.2 Performance et
+optimisation</h3>
+<h4 id="optimisations-react-native">Optimisations React Native</h4>
+<ul>
+<li><strong>Memoization</strong> : React.memo pour composants</li>
+<li><strong>useCallback</strong> : Optimisation des callbacks</li>
+<li><strong>useMemo</strong> : Calculs coûteux</li>
+<li><strong>FlatList</strong> : Liste virtuelle pour grandes listes</li>
+<li><strong>Image caching</strong> : Cache des images</li>
+</ul>
+<h4 id="optimisations-firebase">Optimisations Firebase</h4>
+<ul>
+<li><strong>Index composites</strong> : Requêtes optimisées</li>
+<li><strong>Pagination</strong> : Limitation des résultats</li>
+<li><strong>Offline persistence</strong> : Support hors ligne</li>
+<li><strong>Batch operations</strong> : Opérations groupées</li>
+<li><strong>Real-time listeners</strong> : Synchronisation efficace</li>
+</ul>
+<h4 id="optimisations-next.js">Optimisations Next.js</h4>
+<ul>
+<li><strong>Image optimization</strong> : Next/Image</li>
+<li><strong>Font optimization</strong> : Next/Font</li>
+<li><strong>Code splitting</strong> : Chargement à la demande</li>
+<li><strong>Static generation</strong> : Pages statiques</li>
+<li><strong>Incremental Static Regeneration</strong> : Mise à jour
+automatique</li>
+</ul>
+<h3 id="sécurité">10.3 Sécurité</h3>
+<h4 id="authentification-1">Authentification</h4>
+<ul>
+<li><strong>JWT tokens</strong> : Tokens sécurisés</li>
+<li><strong>Refresh tokens</strong> : Renouvellement automatique</li>
+<li><strong>Session management</strong> : Gestion des sessions</li>
+<li><strong>Password hashing</strong> : Hachage sécurisé</li>
+<li><strong>Rate limiting</strong> : Protection contre l’abus</li>
+</ul>
+<h4 id="données">Données</h4>
+<ul>
+<li><strong>Encryption</strong> : Chiffrement en transit et au
+repos</li>
+<li><strong>Input validation</strong> : Validation des entrées</li>
+<li><strong>SQL injection</strong> : Protection contre les
+injections</li>
+<li><strong>XSS protection</strong> : Protection cross-site
+scripting</li>
+<li><strong>CORS</strong> : Configuration cross-origin</li>
+</ul>
+<h4 id="infrastructure">Infrastructure</h4>
+<ul>
+<li><strong>HTTPS</strong> : Communication sécurisée</li>
+<li><strong>Firewall</strong> : Protection réseau</li>
+<li><strong>Backup</strong> : Sauvegarde sécurisée</li>
+<li><strong>Monitoring</strong> : Surveillance sécurité</li>
+<li><strong>Incident response</strong> : Plan de réponse</li>
+</ul>
+<hr />
+<h2 id="sécurité-et-performance">11. SÉCURITÉ ET PERFORMANCE</h2>
+<h3 id="mesures-de-sécurité">11.1 Mesures de sécurité</h3>
+<h4 id="authentification-2">Authentification</h4>
+<ul>
+<li><strong>Multi-factor authentication</strong> : 2FA pour comptes
+sensibles</li>
+<li><strong>Biometric authentication</strong> : Touch ID, Face ID</li>
+<li><strong>Session timeout</strong> : Expiration automatique</li>
+<li><strong>Device management</strong> : Gestion des appareils</li>
+<li><strong>Audit logs</strong> : Traçabilité des connexions</li>
+</ul>
+<h4 id="données-personnelles">Données personnelles</h4>
+<ul>
+<li><strong>GDPR compliance</strong> : Conformité européenne</li>
+<li><strong>Data minimization</strong> : Collecte minimale</li>
+<li><strong>Right to deletion</strong> : Droit à l’oubli</li>
+<li><strong>Data portability</strong> : Export des données</li>
+<li><strong>Consent management</strong> : Gestion des consentements</li>
+</ul>
+<h4 id="infrastructure-1">Infrastructure</h4>
+<ul>
+<li><strong>DDoS protection</strong> : Protection contre les
+attaques</li>
+<li><strong>SSL/TLS</strong> : Chiffrement des communications</li>
+<li><strong>Security headers</strong> : Headers de sécurité</li>
+<li><strong>Content Security Policy</strong> : Protection XSS</li>
+<li><strong>Regular audits</strong> : Audits de sécurité</li>
+</ul>
+<h3 id="optimisation-des-performances">11.2 Optimisation des
+performances</h3>
+<h4 id="mobile">Mobile</h4>
+<ul>
+<li><strong>Bundle size</strong> : Réduction de la taille</li>
+<li><strong>Lazy loading</strong> : Chargement à la demande</li>
+<li><strong>Image optimization</strong> : Compression des images</li>
+<li><strong>Memory management</strong> : Gestion de la mémoire</li>
+<li><strong>Background processing</strong> : Traitement en
+arrière-plan</li>
+</ul>
+<h4 id="web">Web</h4>
+<ul>
+<li><strong>Core Web Vitals</strong> : Optimisation LCP, FID, CLS</li>
+<li><strong>Caching</strong> : Cache navigateur et CDN</li>
+<li><strong>Compression</strong> : Gzip/Brotli</li>
+<li><strong>Minification</strong> : Réduction du code</li>
+<li><strong>CDN</strong> : Distribution géographique</li>
+</ul>
+<h4 id="backend">Backend</h4>
+<ul>
+<li><strong>Database indexing</strong> : Index optimisés</li>
+<li><strong>Query optimization</strong> : Requêtes optimisées</li>
+<li><strong>Caching</strong> : Cache Redis/Memcached</li>
+<li><strong>Load balancing</strong> : Répartition de charge</li>
+<li><strong>Auto-scaling</strong> : Mise à l’échelle automatique</li>
+</ul>
+<h3 id="monitoring-et-analytics">11.3 Monitoring et analytics</h3>
+<h4 id="application-monitoring">Application monitoring</h4>
+<ul>
+<li><strong>Error tracking</strong> : Sentry/Crashlytics</li>
+<li><strong>Performance monitoring</strong> : APM</li>
+<li><strong>User analytics</strong> : Mixpanel/Amplitude</li>
+<li><strong>A/B testing</strong> : Tests d’optimisation</li>
+<li><strong>Feature flags</strong> : Déploiement progressif</li>
+</ul>
+<h4 id="infrastructure-monitoring">Infrastructure monitoring</h4>
+<ul>
+<li><strong>Server monitoring</strong> : CPU, mémoire, disque</li>
+<li><strong>Database monitoring</strong> : Requêtes lentes</li>
+<li><strong>Network monitoring</strong> : Latence, bande passante</li>
+<li><strong>Alerting</strong> : Notifications automatiques</li>
+<li><strong>Logging</strong> : Centralisation des logs</li>
+</ul>
+<hr />
+<h2 id="conclusion">12. CONCLUSION</h2>
+<h3 id="résumé-des-réalisations">12.1 Résumé des réalisations</h3>
+<p>SocialPlanr a atteint un niveau de développement significatif avec
+une interface utilisateur complète et fonctionnelle. Le projet démontre
+une architecture solide, une approche moderne du développement mobile et
+web, et une vision claire pour l’avenir.</p>
+<h4 id="points-forts">Points forts</h4>
+<ul>
+<li><strong>Interface complète</strong> : 5 écrans entièrement
+fonctionnels</li>
+<li><strong>Architecture moderne</strong> : React Native + Next.js +
+Firebase</li>
+<li><strong>Code qualité</strong> : TypeScript, ESLint,
+documentation</li>
+<li><strong>Build automatisé</strong> : APK Android généré avec
+succès</li>
+<li><strong>Design cohérent</strong> : Identité visuelle unifiée</li>
+</ul>
+<h4 id="innovations-techniques">Innovations techniques</h4>
+<ul>
+<li><strong>Monorepo</strong> : Code partagé entre mobile et web</li>
+<li><strong>Temps réel</strong> : Synchronisation Firebase</li>
+<li><strong>Animations fluides</strong> : Expérience utilisateur
+premium</li>
+<li><strong>Responsive design</strong> : Adaptation
+multi-plateformes</li>
+<li><strong>Type safety</strong> : TypeScript pour la robustesse</li>
+</ul>
+<h3 id="impact-et-valeur">12.2 Impact et valeur</h3>
+<h4 id="pour-les-utilisateurs">Pour les utilisateurs</h4>
+<ul>
+<li><strong>Simplification</strong> : Organisation d’événements
+facilitée</li>
+<li><strong>Collaboration</strong> : Décisions démocratiques</li>
+<li><strong>Transparence</strong> : Gestion financière claire</li>
+<li><strong>Automatisation</strong> : Plans générés par IA</li>
+<li><strong>Accessibilité</strong> : Interface intuitive</li>
+</ul>
+<h4 id="pour-le-marché">Pour le marché</h4>
+<ul>
+<li><strong>Innovation</strong> : Approche collaborative unique</li>
+<li><strong>Croissance</strong> : Marché des événements en
+expansion</li>
+<li><strong>Technologie</strong> : IA et automatisation</li>
+<li><strong>Expérience</strong> : Focus sur l’utilisateur</li>
+<li><strong>Scalabilité</strong> : Architecture évolutive</li>
+</ul>
+<h3 id="recommandations">12.3 Recommandations</h3>
+<h4 id="développement-technique">Développement technique</h4>
+<ol type="1">
+<li><strong>Prioriser le backend</strong> : Migrer vers
+Supabase/PostgreSQL</li>
+<li><strong>Implémenter les tests</strong> : Unit, integration, e2e</li>
+<li><strong>Optimiser les performances</strong> : Monitoring et
+optimisation</li>
+<li><strong>Sécuriser l’application</strong> : Audit de sécurité
+complet</li>
+<li><strong>Documenter l’API</strong> : Documentation technique</li>
+</ol>
+<h4 id="produit-et-business">Produit et business</h4>
+<ol type="1">
+<li><strong>Valider le marché</strong> : Tests utilisateurs</li>
+<li><strong>Définir le pricing</strong> : Modèle freemium</li>
+<li><strong>Planifier le marketing</strong> : Stratégie
+d’acquisition</li>
+<li><strong>Préparer la distribution</strong> : Stores
+d’applications</li>
+<li><strong>Constituer l’équipe</strong> : Développeurs et
+designers</li>
+</ol>
+<h4 id="roadmap-recommandée">Roadmap recommandée</h4>
+<ul>
+<li><strong>Q1 2024</strong> : Backend complet et API</li>
+<li><strong>Q2 2024</strong> : Intégrations IA et paiements</li>
+<li><strong>Q3 2024</strong> : Publication stores et marketing</li>
+<li><strong>Q4 2024</strong> : Fonctionnalités premium et expansion</li>
+</ul>
+<h3 id="vision-à-long-terme">12.4 Vision à long terme</h3>
+<p>SocialPlanr a le potentiel de devenir la plateforme de référence pour
+l’organisation d’événements collaboratifs. Avec une approche centrée sur
+l’utilisateur, une technologie moderne et une vision claire, le projet
+est bien positionné pour capturer une part significative du marché.</p>
+<h4 id="objectifs-2025">Objectifs 2025</h4>
+<ul>
+<li><strong>1M utilisateurs</strong> : Base utilisateurs active</li>
+<li><strong>50+ intégrations</strong> : Écosystème d’applications</li>
+<li><strong>15+ langues</strong> : Expansion internationale</li>
+<li><strong>AI avancée</strong> : Plans personnalisés intelligents</li>
+<li><strong>Monétisation</strong> : Revenus récurrents</li>
+</ul>
+<h4 id="vision-2030">Vision 2030</h4>
+<ul>
+<li><strong>Leader du marché</strong> : Référence événements
+collaboratifs</li>
+<li><strong>Plateforme complète</strong> : Écosystème intégré</li>
+<li><strong>IA générative</strong> : Plans ultra-personnalisés</li>
+<li><strong>Expansion mondiale</strong> : Présence internationale</li>
+<li><strong>Impact social</strong> : Faciliter les connexions
+humaines</li>
+</ul>
+<hr />
+<h2 id="annexes">ANNEXES</h2>
+<h3 id="a.-glossaire-technique">A. Glossaire technique</h3>
+<h3 id="b.-diagrammes-darchitecture">B. Diagrammes d’architecture</h3>
+<h3 id="c.-captures-décran">C. Captures d’écran</h3>
+<h3 id="d.-métriques-de-performance">D. Métriques de performance</h3>
+<h3 id="e.-plan-de-test">E. Plan de test</h3>
+<h3 id="f.-documentation-api">F. Documentation API</h3>
+<h3 id="g.-guide-de-déploiement">G. Guide de déploiement</h3>
+<h3 id="h.-politique-de-sécurité">H. Politique de sécurité</h3>
+<hr />
+<p><strong>Document généré le :</strong> Décembre 2024<br />
+<strong>Version :</strong> 1.0<br />
+<strong>Auteur :</strong> Équipe SocialPlanr<br />
+<strong>Pages :</strong> 40</p>
+</body>
+</html>
