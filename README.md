@@ -2,50 +2,52 @@
 
 [![Build Status](https://img.shields.io/badge/build-passing-brightgreen)](https://github.com/alfredgibeauahoussinou/SocialPlanr-Gestionnaire-d-v-nements-collaboratif-intelligent/actions)
 [![Licence](https://img.shields.io/badge/licence-MIT-blue)](./LEGAL_DOCUMENTS_ENHANCED.md)
-[![Expo](https://img.shields.io/badge/Expo-49.0.0-blueviolet)](https://expo.dev/)
-[![Next.js](https://img.shields.io/badge/Next.js-13+-black)](https://nextjs.org/)
-[![Platform](https://img.shields.io/badge/platform-Android%20%7C%20Web-green)](#)
+[![Expo](https://img.shields.io/badge/Expo-53.0.20-blueviolet)](https://expo.dev/)
+[![React Native](https://img.shields.io/badge/React%20Native-0.79.5-blue.svg)](https://reactnative.dev)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.8.3-blue.svg)](https://www.typescriptlang.org)
+[![Firebase](https://img.shields.io/badge/Firebase-12.0.0-orange.svg)](https://firebase.google.com)
+[![Platform](https://img.shields.io/badge/platform-Android%20%7C%20iOS%20%7C%20Web-green)](#)
 [![Code Style](https://img.shields.io/badge/code%20style-prettier-ff69b4)](https://prettier.io/)
-[![Coverage](https://img.shields.io/badge/coverage-100%25-brightgreen)](#)
+[![Quality](https://img.shields.io/badge/quality-ESLint%20%7C%20TypeScript-brightgreen)](#)
 
 ---
 
 ## 🚀 Résumé rapide
-SocialPlanr est une plateforme collaborative intelligente pour organiser des événements de groupe (voyages, week-ends, soirées, etc.) avec gestion des votes, des dépenses, et génération automatique de plans grâce à l’IA. L’app centralise tout : choix de dates, lieux, activités, gestion de la cagnotte, et suggestions d’hébergement. Accessible sur mobile (Expo/React Native) et web (Next.js).
+SocialPlanr est une plateforme collaborative intelligente pour organiser des événements de groupe (voyages, week-ends, soirées, etc.) avec gestion des votes, des dépenses, et génération automatique de plans grâce à l'IA. L'app centralise tout : choix de dates, lieux, activités, gestion de la cagnotte, et suggestions d'hébergement. Accessible sur mobile (Expo/React Native) et web (Next.js).
+
+**✅ Statut actuel : FONCTIONNEL ET PRÊT POUR LE DÉVELOPPEMENT**
 
 ---
 
 ## 🖼️ Aperçu visuel
 
 > **À insérer :**
-> - Capture d’écran de l’accueil mobile
-> - Capture d’écran du dashboard web
-> - Capture d’écran de la gestion des dépenses
+> - Capture d'écran de l'accueil mobile
+> - Capture d'écran du dashboard web
+> - Capture d'écran de la gestion des dépenses
 
 ---
 
 ## 🛠️ Technologies principales
 
-| Technologie      | Usage principal                |
-|------------------|-------------------------------|
-| Expo/React Native| Application mobile            |
-| Next.js/React    | Site web                      |
-| Supabase         | Authentification & base de données |
-| OpenAI API       | Génération IA de plans         |
-| Stripe           | Paiement & cagnotte           |
-| Booking.com API  | Suggestions d’hébergement      |
-| TypeScript       | Typage & robustesse           |
-| Turborepo/Nx     | Gestion du monorepo (optionnel)|
+| Technologie      | Usage principal                | Version |
+|------------------|-------------------------------|---------|
+| Expo/React Native| Application mobile            | 53.0.20 |
+| Next.js/React    | Site web                      | 13+ |
+| Firebase         | Authentification & base de données | 12.0.0 |
+| TypeScript       | Typage & robustesse           | 5.8.3 |
+| Google Calendar  | Synchronisation calendrier    | API |
+| Expo Notifications| Notifications push           | 0.31.4 |
 
 ---
 
 ## ✨ Fonctionnalités clés
-- 🔐 Authentification Google (Supabase)
+- 🔐 Authentification Firebase (email/mot de passe + Google)
 - 👥 Gestion de groupes (admin/membres)
 - 🗳️ Propositions & votes collaboratifs (dates, lieux, activités)
-- 🤖 Génération IA de plans personnalisés (OpenAI)
-- 💸 Gestion des dépenses & cagnotte (Stripe)
-- 🏨 Suggestions d’hébergement (Booking.com)
+- 💸 Gestion des dépenses & partage équitable
+- 📅 Intégration Google Calendar & calendrier natif
+- 🔔 Notifications push personnalisées
 - 📱 App mobile (Expo/React Native) & site web (Next.js)
 - 🔄 Partage de code via `/shared` (types, hooks, composants)
 
@@ -53,13 +55,13 @@ SocialPlanr est une plateforme collaborative intelligente pour organiser des év
 
 ## 🔄 Exemple de flux utilisateur
 
-1. **Inscription/Connexion** via Google
-2. **Création d’un groupe** ou rejoindre un groupe existant
+1. **Inscription/Connexion** via Firebase Auth
+2. **Création d'un groupe** ou rejoindre un groupe existant
 3. **Proposition de dates, lieux, activités**
 4. **Vote collaboratif** sur les propositions
-5. **Génération automatique d’un plan** (IA)
-6. **Gestion des dépenses** et suivi de la cagnotte
-7. **Suggestions d’hébergement**
+5. **Création d'événements** avec détails complets
+6. **Gestion des dépenses** et suivi des parts
+7. **Synchronisation calendrier** automatique
 8. **Notifications** pour les actions importantes
 
 ---
@@ -70,28 +72,32 @@ SocialPlanr est une plateforme collaborative intelligente pour organiser des év
 // Exemple de type pour un événement
 export type Event = {
   id: string;
-  name: string;
-  groupId: string;
-  date: string;
+  title: string;
+  description: string;
+  date: Date;
   location: string;
-  activities: string[];
-  expenses: Expense[];
-  proposals: Proposal[];
+  attendees: string[];
+  groupId?: string;
+  status: 'planning' | 'voting' | 'confirmed' | 'in_progress' | 'completed';
 };
 
 export type Expense = {
   id: string;
+  eventId: string;
   payerId: string;
   amount: number;
   description: string;
   participants: string[];
+  createdAt: Date;
 };
 
-export type Proposal = {
+export type Group = {
   id: string;
-  type: 'date' | 'location' | 'activity';
-  value: string;
-  votes: { userId: string; value: boolean }[];
+  name: string;
+  description: string;
+  members: string[];
+  adminId: string;
+  status: 'active' | 'planning' | 'completed';
 };
 ```
 
@@ -124,7 +130,7 @@ SocialPlanr est une application permettant à des groupes d'organiser ensemble d
 
 ## Architecture du projet
 Monorepo avec :
-- `/mobile` : Application mobile (Expo/React Native)
+- `/mobile` : Application mobile (Expo/React Native) - **✅ FONCTIONNEL**
 - `/web` : Site de présentation (Next.js, React)
 - `/shared` : Types, hooks, composants réutilisables
 
@@ -147,7 +153,7 @@ Monorepo avec :
    ```bash
    npx create-expo-app mobile
    # ou, pour TypeScript :
-   npx create-expo-app mobile --template tabs@49.0.0 --npm
+   npx create-expo-app mobile --template tabs@53.0.0 --npm
    ```
 
 3. **Initialiser le site web (Next.js)**
@@ -177,12 +183,17 @@ Monorepo avec :
    # ou yarn
    ```
 
-2. Lancer le projet Expo :
+2. **Configuration Firebase** (requis)
+   - Créer un projet Firebase
+   - Copier les clés de configuration dans `config/firebase.ts`
+   - Activer Authentication et Firestore
+
+3. Lancer le projet Expo :
    ```bash
    npx expo start
    ```
 
-3. Un QR code s'affiche dans le terminal ou sur la page web Expo.
+4. Un QR code s'affiche dans le terminal ou sur la page web Expo.
 
 ## Installation et lancement du site web (Next.js)
 
@@ -236,19 +247,23 @@ Monorepo avec :
 
 ```
 /SocialPlanr
-  /mobile      ← App mobile Expo (React Native)
+  /mobile      ← App mobile Expo (React Native) ✅ FONCTIONNEL
   /web         ← Site Next.js (React)
   /shared      ← Types, hooks, composants communs
   README.md
 ```
 
 ## Fonctionnalités MVP
-- Authentification Google (Supabase Auth)
-- Création et gestion de groupes (admin/membres)
-- Propositions et votes (dates, lieux, activités)
-- Génération IA d’un plan de voyage (OpenAI API)
-- Gestion des dépenses et cagnotte (Stripe)
-- Intégration d’un fournisseur externe (ex: Booking.com)
+- ✅ Authentification Firebase (email/mot de passe + Google)
+- ✅ Création et gestion de groupes (admin/membres)
+- ✅ Création et gestion d'événements
+- ✅ Gestion des dépenses et partage équitable
+- ✅ Intégration Google Calendar
+- ✅ Notifications push
+- ✅ Interface utilisateur complète
+- 🔧 Propositions et votes collaboratifs temps réel
+- 🔧 Génération IA de plans (OpenAI API)
+- 🔧 Intégration Booking.com
 
 ## Génération de l'APK Android
 
@@ -294,14 +309,17 @@ eas build --platform android --local --profile development
 ## Roadmap
 1. ✅ Initialiser le monorepo et les projets mobile/web
 2. ✅ Interface utilisateur complète (4 écrans)
-3. ✅ Génération APK pour distribution
-4. 🔧 Authentification et gestion de groupes (Supabase)
-5. 🔧 Propositions et votes collaboratifs temps réel
-6. 🔧 Génération IA de plans (OpenAI API)
-7. 🔧 Gestion des dépenses et paiement (Stripe)
-8. 🔧 Intégration Booking.com
-9. 🚀 Déploiement web sur Netlify
-10. 🚀 Publication Google Play Store
+3. ✅ Authentification Firebase
+4. ✅ Création et gestion d'événements
+5. ✅ Gestion des dépenses
+6. ✅ Intégration Google Calendar
+7. ✅ Notifications push
+8. ✅ Tests de qualité (ESLint, TypeScript)
+9. 🔧 Propositions et votes collaboratifs temps réel
+10. 🔧 Génération IA de plans (OpenAI API)
+11. 🔧 Intégration Booking.com
+12. 🚀 Déploiement web sur Netlify
+13. 🚀 Publication Google Play Store
 
 ---
 
@@ -331,26 +349,29 @@ eas build --platform android --local --profile development
 
 ## ❓ FAQ
 
-**Q : L’application est-elle gratuite ?**
+**Q : L'application est-elle gratuite ?**
 > Oui, SocialPlanr est open-source et gratuit pour un usage personnel.
 
 **Q : Puis-je utiliser SocialPlanr pour des événements professionnels ?**
 > Oui, mais certaines intégrations (paiement, hébergement) peuvent nécessiter des comptes tiers.
 
 **Q : Où sont stockées mes données ?**
-> Les données sont hébergées sur Supabase (Europe), sécurisées et non revendues.
+> Les données sont hébergées sur Firebase (Google Cloud), sécurisées et non revendues.
 
 **Q : Comment signaler un bug ou demander une fonctionnalité ?**
-> Ouvre une issue sur GitHub ou contacte l’équipe.
+> Ouvre une issue sur GitHub ou contacte l'équipe.
+
+**Q : L'application est-elle stable ?**
+> ✅ Oui, l'application est fonctionnelle et prête pour le développement. Tous les tests de qualité passent.
 
 ---
 
 ## 🔒 Sécurité & Confidentialité
-- Authentification sécurisée via OAuth (Google)
-- Données chiffrées côté serveur (Supabase)
+- Authentification sécurisée via Firebase Auth (email/mot de passe + Google)
+- Données chiffrées côté serveur (Firebase)
 - Respect du RGPD : aucune revente de données, suppression sur demande
-- Paiements gérés par Stripe (certifié PCI DSS)
-- Les clés API sensibles sont stockées dans des variables d’environnement
+- Les clés API sensibles sont stockées dans des variables d'environnement
+- Validation côté client et serveur
 
 ---
 
@@ -369,7 +390,7 @@ Merci de consulter le code de conduite et les guides de contribution si disponib
 ## 📬 Support & Contact
 Pour toute question, bug ou suggestion :
 - Ouvre une issue sur GitHub
-- Ou contacte l’équipe via le repo
+- Ou contacte l'équipe via le repo
 
 ---
 
@@ -380,7 +401,7 @@ Ce projet est sous licence MIT. Voir [LEGAL_DOCUMENTS_ENHANCED.md](./LEGAL_DOCUM
 ---
 
 ## 🙏 Crédits & Remerciements
-- [Expo](https://expo.dev/), [React Native](https://reactnative.dev/), [Next.js](https://nextjs.org/), [Supabase](https://supabase.com/), [Stripe](https://stripe.com/), [OpenAI](https://openai.com/), [Booking.com](https://www.booking.com/)
+- [Expo](https://expo.dev/), [React Native](https://reactnative.dev/), [Next.js](https://nextjs.org/), [Firebase](https://firebase.google.com/), [TypeScript](https://www.typescriptlang.org/)
 - Merci à tous les contributeurs et testeurs !
 
 ---
@@ -393,10 +414,9 @@ flowchart TD
   B["App Mobile (Expo/React Native)"]
   C["Site Web (Next.js)"]
   D["/shared (Types, hooks, composants)"]
-  E["Supabase (Auth + DB)"]
-  F["OpenAI API"]
-  G["Booking.com API"]
-  H["Stripe API"]
+  E["Firebase (Auth + Firestore)"]
+  F["Google Calendar API"]
+  G["Expo Notifications"]
 
   A -->|"Utilise"| B
   A -->|"Utilise"| C
@@ -404,12 +424,10 @@ flowchart TD
   C <-->|"Partage code"| D
   B -->|"Auth, données"| E
   C -->|"Auth, données"| E
-  B -->|"Génération plan IA"| F
-  C -->|"Génération plan IA"| F
-  B -->|"Recherche hébergement"| G
-  C -->|"Recherche hébergement"| G
-  B -->|"Paiement, cagnotte"| H
-  C -->|"Paiement, cagnotte"| H
+  B -->|"Synchronisation"| F
+  C -->|"Synchronisation"| F
+  B -->|"Notifications"| G
+  C -->|"Notifications"| G
 ```
 
 ### Explications des composants et interactions
@@ -418,46 +436,44 @@ flowchart TD
 - **App Mobile (Expo/React Native)** : application mobile complète, toutes fonctionnalités collaboratives.
 - **Site Web (Next.js)** : site de présentation, mais peut aussi proposer des fonctionnalités collaboratives (MVP ou plus tard).
 - **/shared** : dossier pour partager des types TypeScript, hooks, composants UI entre le web et le mobile (évite la duplication de logique).
-- **Supabase (Auth + DB)** : gère l'authentification (Google, etc.) et stocke toutes les données (groupes, votes, dépenses, etc.).
-- **OpenAI API** : génère automatiquement des plans d'événements personnalisés selon les préférences du groupe.
-- **Booking.com API** : permet de suggérer des hébergements en lien avec le plan généré.
-- **Stripe API** : gère la cagnotte et les paiements entre membres du groupe.
+- **Firebase (Auth + Firestore)** : gère l'authentification (Google, email/mot de passe) et stocke toutes les données (groupes, événements, dépenses, etc.).
+- **Google Calendar API** : synchronise les événements avec le calendrier de l'utilisateur.
+- **Expo Notifications** : envoie des notifications push pour les événements et actions importantes.
 
 **Flux principaux :**
 - L'utilisateur interagit avec l'app mobile ou le site web.
 - Les deux apps partagent du code via `/shared`.
-- Les apps communiquent avec Supabase pour l'auth et la gestion des données.
-- Pour la génération de plans, elles appellent l'API OpenAI.
-- Pour l'hébergement, elles appellent Booking.com.
-- Pour la gestion des paiements, elles utilisent Stripe.
+- Les apps communiquent avec Firebase pour l'auth et la gestion des données.
+- Pour la synchronisation calendrier, elles appellent l'API Google Calendar.
+- Pour les notifications, elles utilisent Expo Notifications.
 
-## Schéma technique : Auth, Data & Vote
+## Schéma technique : Auth, Data & Events
 
 ```mermaid
 sequenceDiagram
   participant U as Utilisateur
   participant M as App Mobile/Web
-  participant S as Supabase (Auth + DB)
+  participant F as Firebase (Auth + Firestore)
 
   U->>M: Saisie email/Google (login/signup)
-  M->>S: Requête Auth (OAuth Google)
-  S-->>M: Jeton d'authentification (JWT)
-  M->>S: Requête (CRUD) données groupe (avec JWT)
-  S-->>M: Réponse (groupes, membres, propositions, votes)
-  U->>M: Propose une date/lieu/activité
-  M->>S: POST nouvelle proposition
-  S-->>M: Confirmation création
-  U->>M: Vote sur une proposition
-  M->>S: POST vote (userId, proposalId)
-  S-->>M: Confirmation vote
-  M->>S: GET résultats votes
-  S-->>M: Résultats agrégés (majorité)
-  M->>U: Affiche résultats en temps réel
+  M->>F: Requête Auth (OAuth Google)
+  F-->>M: Jeton d'authentification (JWT)
+  M->>F: Requête (CRUD) données groupe (avec JWT)
+  F-->>M: Réponse (groupes, membres, événements, dépenses)
+  U->>M: Crée un événement
+  M->>F: POST nouvel événement
+  F-->>M: Confirmation création
+  U->>M: Ajoute une dépense
+  M->>F: POST nouvelle dépense
+  F-->>M: Confirmation création
+  M->>F: GET données mises à jour
+  F-->>M: Données en temps réel
+  M->>U: Affiche données en temps réel
 ```
 
 ### Explications du flux
-- **Authentification** : L'utilisateur se connecte via Google, l'app envoie la requête à Supabase qui retourne un JWT.
+- **Authentification** : L'utilisateur se connecte via Google ou email/mot de passe, l'app envoie la requête à Firebase qui retourne un JWT.
 - **Accès aux données** : L'app utilise le JWT pour requêter les données du groupe (sécurisé).
-- **Proposition** : L'utilisateur propose une date/lieu/activité, l'app envoie la création à Supabase.
-- **Vote** : L'utilisateur vote, l'app envoie le vote à Supabase.
-- **Résultats** : L'app récupère les résultats agrégés et les affiche en temps réel.
+- **Création d'événement** : L'utilisateur crée un événement, l'app envoie la création à Firebase.
+- **Gestion des dépenses** : L'utilisateur ajoute une dépense, l'app envoie les données à Firebase.
+- **Temps réel** : L'app récupère les données mises à jour et les affiche en temps réel.
