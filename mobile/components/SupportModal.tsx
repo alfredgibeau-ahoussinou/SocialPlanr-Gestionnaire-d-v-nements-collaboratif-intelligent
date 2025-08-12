@@ -29,7 +29,7 @@ export default function SupportModal({ visible, onClose }: SupportModalProps) {
       title: 'Signaler un bug',
       icon: 'exclamationmark.triangle' as const,
       color: '#EF4444',
-      description: 'Un problème technique avec l\'application',
+      description: 'Un problème technique avec l&apos;application',
     },
     {
       id: 'feature',
@@ -64,11 +64,11 @@ export default function SupportModal({ visible, onClose }: SupportModalProps) {
   const faqItems = [
     {
       question: 'Comment créer un groupe ?',
-      answer: 'Allez dans l\'onglet principal et appuyez sur "+ Créer un groupe". Donnez un nom à votre groupe et invitez vos amis !',
+      answer: 'Allez dans l&apos;onglet principal et appuyez sur "+ Créer un groupe". Donnez un nom à votre groupe et invitez vos amis !',
     },
     {
       question: 'Comment partager les frais ?',
-      answer: 'Dans un événement, allez dans la section "Dépenses" et ajoutez les frais. L\'app calculera automatiquement la part de chacun.',
+      answer: 'Dans un événement, allez dans la section "Dépenses" et ajoutez les frais. L&apos;app calculera automatiquement la part de chacun.',
     },
     {
       question: 'Puis-je modifier un événement après création ?',
@@ -79,7 +79,7 @@ export default function SupportModal({ visible, onClose }: SupportModalProps) {
       answer: 'Utilisez la fonction "Inviter des amis" dans votre profil pour partager l\'app via différents canaux.',
     },
     {
-      question: 'L\'app est-elle gratuite ?',
+      question: 'L&apos;app est-elle gratuite ?',
       answer: 'Oui, SocialPlanr est entièrement gratuite ! Nous prévoyons des fonctionnalités premium dans le futur.',
     },
   ];
@@ -258,7 +258,7 @@ export default function SupportModal({ visible, onClose }: SupportModalProps) {
 
           {/* App Info */}
           <View style={styles.appInfoSection}>
-            <Text style={styles.appInfoTitle}>📱 Informations de l'app</Text>
+            <Text style={styles.appInfoTitle}>📱 Informations de l&apos;app</Text>
             <View style={styles.appInfoGrid}>
               <View style={styles.appInfoItem}>
                 <Text style={styles.appInfoLabel}>Version</Text>

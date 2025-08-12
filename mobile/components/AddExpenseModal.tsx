@@ -9,8 +9,7 @@ import {
   Alert,
   ActivityIndicator,
   StyleSheet,
-  Switch,
-  FlatList
+  Switch
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useAuth } from '../contexts/AuthContext';

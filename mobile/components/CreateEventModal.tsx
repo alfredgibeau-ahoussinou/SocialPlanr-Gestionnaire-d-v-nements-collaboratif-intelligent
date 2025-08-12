@@ -19,7 +19,7 @@ import { useNotifications } from '../contexts/NotificationContext';
 import { collection, addDoc, serverTimestamp, query, where, getDocs } from 'firebase/firestore';
 import { db } from '../config/firebase';
 import { showCalendarOptions, calculateEndDate, CalendarEvent } from '../utils/calendarUtils';
-import { createEventNotifications, createSystemNotifications } from '../utils/notificationHelpers';
+import { createEventNotifications } from '../utils/notificationHelpers';
 
 interface CreateEventModalProps {
   visible: boolean;
@@ -44,7 +44,7 @@ export default function CreateEventModal({ visible, onClose }: CreateEventModalP
   const [addToCalendar, setAddToCalendar] = useState(true);
   // const [showDatePicker, setShowDatePicker] = useState(false);
   // const [showTimePicker, setShowTimePicker] = useState(false);
-  const { user, userProfile } = useAuth();
+  const { user } = useAuth();
   const { addNotification, showError } = useNotifications();
 
   useEffect(() => {

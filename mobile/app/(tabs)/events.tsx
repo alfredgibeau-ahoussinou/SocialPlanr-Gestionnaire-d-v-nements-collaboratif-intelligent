@@ -5,6 +5,7 @@ import { useAuth } from '../../contexts/AuthContext';
 import { collection, query, where, onSnapshot } from 'firebase/firestore';
 import { db } from '../../config/firebase';
 import { showCalendarOptions, calculateEndDate, CalendarEvent } from '../../utils/calendarUtils';
+import CreateEventModal from '../../components/CreateEventModal';
 
 interface Event {
   id: string;
@@ -22,6 +23,7 @@ interface Event {
 export default function EventsScreen() {
   const [events, setEvents] = useState<Event[]>([]);
   const [loading, setLoading] = useState(true);
+  const [showCreateModal, setShowCreateModal] = useState(false);
   const { user } = useAuth();
 
   useEffect(() => {
@@ -48,7 +50,7 @@ export default function EventsScreen() {
   }, [user]);
 
   const handleCreateEvent = () => {
-    Alert.alert('Créer un événement', 'Retournez à l\'onglet principal (Dashboard) pour créer vos événements');
+    setShowCreateModal(true);
   };
 
   const getStatusColor = (status: string) => {
@@ -181,11 +183,9 @@ export default function EventsScreen() {
             {events.length > 0 ? `${events.length} événement${events.length > 1 ? 's' : ''}` : 'Aucun événement'}
           </Text>
         </View>
-        {events.length > 0 && (
-          <TouchableOpacity style={styles.addButton} onPress={handleCreateEvent}>
-            <Text style={styles.addButtonText}>+</Text>
-          </TouchableOpacity>
-        )}
+        <TouchableOpacity style={styles.addButton} onPress={handleCreateEvent}>
+          <Text style={styles.addButtonText}>+</Text>
+        </TouchableOpacity>
       </View>
 
       {/* Events List */}
@@ -198,6 +198,12 @@ export default function EventsScreen() {
           </View>
         )}
       </ScrollView>
+
+      {/* Modal de création d'événement */}
+      <CreateEventModal 
+        visible={showCreateModal}
+        onClose={() => setShowCreateModal(false)}
+      />
     </SafeAreaView>
   );
 }

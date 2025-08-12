@@ -23,7 +23,7 @@ export default function CreateGroupModal({ visible, onClose }: CreateGroupModalP
   const [groupName, setGroupName] = useState('');
   const [groupDescription, setGroupDescription] = useState('');
   const [loading, setLoading] = useState(false);
-  const { user, userProfile } = useAuth();
+  const { user } = useAuth();
 
   const handleCreateGroup = async () => {
     if (!groupName.trim()) {

@@ -130,7 +130,7 @@ Télécharge l'app ici : ${inviteLink}
             <Text style={styles.heroEmoji}>🎉</Text>
             <Text style={styles.heroTitle}>Invite tes amis sur SocialPlanr !</Text>
             <Text style={styles.heroDescription}>
-              Plus on est de fous, plus on rit ! Partage l'app avec tes proches 
+              Plus on est de fous, plus on rit ! Partage l&apos;app avec tes proches 
               et organisez vos sorties ensemble.
             </Text>
           </View>
@@ -156,7 +156,7 @@ Télécharge l'app ici : ${inviteLink}
 
           {/* Copy Link */}
           <View style={styles.section}>
-            <Text style={styles.sectionTitle}>🔗 Lien d'invitation</Text>
+            <Text style={styles.sectionTitle}>🔗 Lien d&apos;invitation</Text>
             <View style={styles.linkContainer}>
               <Text style={styles.linkText} numberOfLines={1}>
                 {inviteLink}
@@ -182,7 +182,7 @@ Télécharge l'app ici : ${inviteLink}
             />
             <TouchableOpacity style={styles.sendButton} onPress={handleSendEmail}>
               <IconSymbol name="paperplane.fill" size={20} color="#FFFFFF" />
-              <Text style={styles.sendButtonText}>Envoyer l'invitation</Text>
+              <Text style={styles.sendButtonText}>Envoyer l&apos;invitation</Text>
             </TouchableOpacity>
           </View>
 
@@ -190,7 +190,7 @@ Télécharge l'app ici : ${inviteLink}
           <View style={styles.section}>
             <Text style={styles.sectionTitle}>✏️ Message personnalisé</Text>
             <Text style={styles.sectionDescription}>
-              Personnalise ton message d'invitation (optionnel)
+              Personnalise ton message d&apos;invitation (optionnel)
             </Text>
             <TextInput
               style={styles.messageInput}

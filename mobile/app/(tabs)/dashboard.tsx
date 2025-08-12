@@ -15,6 +15,7 @@ import { IconSymbol } from '@/components/ui/IconSymbol';
 import { useAuth } from '../../contexts/AuthContext';
 import { collection, query, where, onSnapshot } from 'firebase/firestore';
 import { db } from '../../config/firebase';
+import CreateEventModal from '../../components/CreateEventModal';
 
 interface Event {
   id: string;
@@ -38,6 +39,7 @@ export default function DashboardScreen() {
   const [refreshing, setRefreshing] = useState(false);
   const [loading, setLoading] = useState(true);
   const [loggingOut, setLoggingOut] = useState(false);
+  const [showCreateEventModal, setShowCreateEventModal] = useState(false);
   const { user, userProfile, logout } = useAuth();
   
   const fadeAnim = useRef(new Animated.Value(0)).current;
@@ -103,7 +105,7 @@ export default function DashboardScreen() {
   };
 
   const handleCreateEvent = () => {
-    Alert.alert('Créer un événement', 'Utilisez l\'onglet principal (Dashboard) pour créer vos événements');
+    setShowCreateEventModal(true);
   };
 
   const handleCreateGroup = () => {
@@ -306,6 +308,12 @@ export default function DashboardScreen() {
           </Animated.View>
         )}
       </ScrollView>
+
+      {/* Modal de création d'événement */}
+      <CreateEventModal 
+        visible={showCreateEventModal}
+        onClose={() => setShowCreateEventModal(false)}
+      />
     </SafeAreaView>
   );
 }
