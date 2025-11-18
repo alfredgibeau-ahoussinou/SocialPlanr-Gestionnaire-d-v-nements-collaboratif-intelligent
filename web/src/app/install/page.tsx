@@ -4,6 +4,7 @@ import Image from "next/image";
 import Head from "next/head";
 import Link from "next/link";
 import { useState, useEffect } from "react";
+import Footer from "@/components/Footer";
 
 export default function Install() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -26,8 +27,8 @@ export default function Install() {
     <>
       <Head>
         <title>Installer SocialPlanr Mobile - Téléchargez l&apos;app pour Android et iOS</title>
-        <meta name="description" content="Téléchargez l&apos;application mobile SocialPlanr pour Android et iOS. Organisez vos événements où que vous soyez avec vos amis !" />
-        <meta name="keywords" content="installer, télécharger, app mobile, Android, iOS, SocialPlanr, événements" />
+        <meta name="description" content="Téléchargez l&apos;application mobile SocialPlanr pour Android et iOS. Gérez vos finances entreprise et personnel où que vous soyez !" />
+        <meta name="keywords" content="installer, télécharger, app mobile, Android, iOS, SocialPlanr, finances, gestion financière" />
       </Head>
       
       <div className="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50">
@@ -45,87 +46,115 @@ export default function Install() {
             </div>
             {/* Desktop Navigation */}
             <nav className="hidden md:flex space-x-8">
-              <Link href="/" className="text-gray-600 hover:text-blue-600 transition-colors">
-                Accueil
-              </Link>
-              <Link href="/#fonctionnalites" className="text-gray-600 hover:text-blue-600 transition-colors">
+              <Link href="/fonctionnalites" className="text-gray-600 hover:text-blue-600 transition-colors">
                 Fonctionnalités
               </Link>
-              <Link href="#support" className="text-gray-600 hover:text-blue-600 transition-colors">
-                Support
+              <Link href="/comment-ca-marche" className="text-gray-600 hover:text-blue-600 transition-colors">
+                Comment ça marche
+              </Link>
+              <a href="/install" className="text-gray-600 hover:text-blue-600 transition-colors">
+                📱 Installer l&apos;app
+              </a>
+              <Link href="/contact" className="text-gray-600 hover:text-blue-600 transition-colors">
+                Contact
               </Link>
             </nav>
-            
-            {/* Desktop CTA Button */}
-            <button className="hidden md:block bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-2 rounded-lg hover:shadow-lg transition-all duration-300">
-              Connexion
-            </button>
             
             {/* Mobile Menu Button */}
             <button 
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="md:hidden p-2 rounded-lg text-gray-600 hover:text-blue-600 hover:bg-gray-100 transition-colors"
+              className="md:hidden p-2 rounded-xl text-gray-600 hover:text-blue-600 hover:bg-gradient-to-r hover:from-blue-50 hover:to-purple-50 transition-all duration-300 transform hover:scale-105"
               data-mobile-menu
+              aria-label="Toggle menu"
             >
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                {mobileMenuOpen ? (
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                ) : (
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-                )}
-              </svg>
+              <div className="relative w-6 h-6 flex flex-col justify-center items-center">
+                <span 
+                  className={`absolute w-5 h-0.5 bg-current rounded-full transition-all duration-300 ${
+                    mobileMenuOpen ? 'rotate-45' : 'translate-y-[-6px]'
+                  }`}
+                />
+                <span 
+                  className={`absolute w-5 h-0.5 bg-current rounded-full transition-all duration-300 ${
+                    mobileMenuOpen ? 'opacity-0 scale-0' : 'opacity-100 scale-100'
+                  }`}
+                />
+                <span 
+                  className={`absolute w-5 h-0.5 bg-current rounded-full transition-all duration-300 ${
+                    mobileMenuOpen ? '-rotate-45' : 'translate-y-[6px]'
+                  }`}
+                />
+              </div>
             </button>
           </div>
           
           {/* Mobile Menu */}
-          {mobileMenuOpen && (
-            <div className="md:hidden" data-mobile-menu>
-              <div className={`px-2 pt-2 pb-3 space-y-1 bg-white/95 backdrop-blur-md rounded-lg mt-2 shadow-lg transition-all duration-200 ${mobileMenuOpen ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-2'}`}>
-                <Link 
-                  href="/" 
-                  className="block px-3 py-2 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-colors"
+          <div 
+            className={`md:hidden overflow-hidden transition-all duration-[400ms] ease-in-out ${
+              mobileMenuOpen 
+                ? 'max-h-96 opacity-100' 
+                : 'max-h-0 opacity-0'
+            }`}
+            data-mobile-menu
+          >
+            <div className="px-3 pt-3 pb-3 space-y-1.5 bg-white/98 backdrop-blur-2xl rounded-2xl mt-3 shadow-xl border-2 border-blue-100/50">
+                <Link
+                  href="/fonctionnalites" 
+                  className="block px-4 py-2.5 text-gray-700 hover:text-white hover:bg-gradient-to-r hover:from-blue-500 hover:to-purple-500 rounded-lg transition-all duration-300 transform hover:scale-[1.03] font-medium relative overflow-hidden group"
                   onClick={() => setMobileMenuOpen(false)}
+                  style={{ 
+                    animation: mobileMenuOpen ? 'scaleIn 0.35s ease-out 0.05s both' : 'none' 
+                  }}
                 >
-                  🏠 Accueil
+                  <span className="relative z-10 flex items-center space-x-2">
+                    <span className="text-lg">📋</span>
+                    <span>Fonctionnalités</span>
+                  </span>
+                  <span className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
                 </Link>
-                <Link 
-                  href="/#fonctionnalites" 
-                  className="block px-3 py-2 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-colors"
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  📋 Fonctionnalités
-                </Link>
-                <Link 
-                  href="#support" 
-                  className="block px-3 py-2 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-colors"
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  🎧 Support
-                </Link>
-                <div className="border-t pt-2 mt-2">
-                  <div className="space-y-2">
-                    <Link 
-                      href="/socialplanr-v1.0.0.apk" 
-                      download="SocialPlanr-v1.0.0.apk"
-                      className="block w-full bg-green-600 text-white py-2 px-4 rounded-lg text-center font-semibold hover:bg-green-700 transition-colors"
-                      onClick={() => setMobileMenuOpen(false)}
-                    >
-                      📱 Télécharger APK
-                    </Link>
-                    <button 
-                      onClick={() => {
-                        window.open('http://localhost:8081', '_blank');
-                        setMobileMenuOpen(false);
-                      }}
-                      className="block w-full bg-blue-600 text-white py-2 px-4 rounded-lg text-center font-semibold hover:bg-blue-700 transition-colors"
-                    >
-                      📲 QR Code Expo
-                    </button>
-                  </div>
-                </div>
-              </div>
+              <Link
+                href="/comment-ca-marche" 
+                className="block px-4 py-2.5 text-gray-700 hover:text-white hover:bg-gradient-to-r hover:from-blue-500 hover:to-purple-500 rounded-lg transition-all duration-300 transform hover:scale-[1.03] font-medium relative overflow-hidden group"
+                onClick={() => setMobileMenuOpen(false)}
+                style={{ 
+                  animation: mobileMenuOpen ? 'scaleIn 0.35s ease-out 0.1s both' : 'none' 
+                }}
+              >
+                <span className="relative z-10 flex items-center space-x-2">
+                  <span className="text-lg">❓</span>
+                  <span>Comment ça marche</span>
+                </span>
+                <span className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
+              </Link>
+              <a
+                href="/install" 
+                className="block px-4 py-2.5 text-gray-700 hover:text-white hover:bg-gradient-to-r hover:from-blue-500 hover:to-purple-500 rounded-lg transition-all duration-300 transform hover:scale-[1.03] font-medium relative overflow-hidden group"
+                onClick={() => setMobileMenuOpen(false)}
+                style={{ 
+                  animation: mobileMenuOpen ? 'scaleIn 0.35s ease-out 0.15s both' : 'none' 
+                }}
+              >
+                <span className="relative z-10 flex items-center space-x-2">
+                  <span className="text-lg">📱</span>
+                  <span>Installer l&apos;app</span>
+                </span>
+                <span className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
+              </a>
+              <Link 
+                href="/contact" 
+                className="block px-4 py-2.5 text-gray-700 hover:text-white hover:bg-gradient-to-r hover:from-blue-500 hover:to-purple-500 rounded-lg transition-all duration-300 transform hover:scale-[1.03] font-medium relative overflow-hidden group"
+                onClick={() => setMobileMenuOpen(false)}
+                style={{ 
+                  animation: mobileMenuOpen ? 'scaleIn 0.35s ease-out 0.2s both' : 'none' 
+                }}
+              >
+                <span className="relative z-10 flex items-center space-x-2">
+                  <span className="text-lg">📞</span>
+                  <span>Contact</span>
+                </span>
+                <span className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
+              </Link>
             </div>
-          )}
+          </div>
         </div>
       </header>
 
@@ -139,8 +168,8 @@ export default function Install() {
             </span>
           </h1>
           <p className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto">
-            Organisez vos événements où que vous soyez ! Téléchargez l&apos;application mobile 
-            SocialPlanr pour Android et iOS et restez connecté avec votre groupe.
+            Gérez vos finances entreprise et personnel où que vous soyez ! Téléchargez l&apos;application mobile 
+            SocialPlanr pour Android et iOS et gardez le contrôle de vos finances.
           </p>
           
           {/* App Preview */}
@@ -151,29 +180,29 @@ export default function Install() {
                   <span className="text-white font-bold text-lg">S</span>
                 </div>
                 <h3 className="text-white text-lg font-semibold mb-2">SocialPlanr</h3>
-                <p className="text-gray-400 text-sm mb-6">Organisez ensemble</p>
+                <p className="text-gray-400 text-sm mb-6">Gérez vos finances</p>
                 
                 {/* Mock App Interface */}
                 <div className="bg-white rounded-2xl p-4 mb-4">
                   <div className="flex items-center space-x-3 mb-4">
                     <div className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center">
-                      <span className="text-blue-600 font-semibold">👥</span>
+                      <span className="text-blue-600 font-semibold">💰</span>
                     </div>
                     <div className="text-left">
-                      <p className="text-gray-900 font-medium">Week-end à Paris</p>
-                      <p className="text-gray-500 text-sm">5 participants • En cours</p>
+                      <p className="text-gray-900 font-medium">Compte Personnel</p>
+                      <p className="text-gray-500 text-sm">Solde: +1,250.00€</p>
                     </div>
                   </div>
                   
                   <div className="space-y-2">
                     <div className="bg-green-100 text-green-800 px-3 py-2 rounded-lg text-sm">
-                      ✓ Date: 15-17 Mars (votée)
+                      ✓ Revenus: +2,500€ ce mois
                     </div>
                     <div className="bg-yellow-100 text-yellow-800 px-3 py-2 rounded-lg text-sm">
-                      📍 Lieu: Vote en cours...
+                      📊 Budgets: 3 actifs
                     </div>
                     <div className="bg-blue-100 text-blue-800 px-3 py-2 rounded-lg text-sm">
-                      🤖 Plan IA: Généré
+                      📈 Transactions: 12 ce mois
                     </div>
                   </div>
                 </div>
@@ -188,7 +217,7 @@ export default function Install() {
           {/* QR Code Hero Section */}
           <div className="max-w-2xl mx-auto mt-16 p-8 bg-gradient-to-r from-blue-600 to-purple-600 rounded-3xl text-white text-center">
             <h2 className="text-2xl font-bold mb-4">📲 Installation Instantanée</h2>
-            <p className="mb-6 opacity-90">Scannez ce QR code avec l&apos;app Expo Go pour tester SocialPlanr immédiatement</p>
+            <p className="mb-6 opacity-90">Scannez ce QR code avec l&apos;app Expo Go pour tester SocialPlanr et gérer vos finances immédiatement</p>
             
             <div className="bg-white p-6 rounded-2xl inline-block mb-6">
               <Image 
@@ -201,19 +230,13 @@ export default function Install() {
             </div>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link 
-                href="/socialplanr-v1.0.0.apk" 
-                download="SocialPlanr-v1.0.0.apk"
-                className="bg-white text-blue-600 px-8 py-3 rounded-xl text-lg font-semibold hover:shadow-2xl transition-all duration-300 transform hover:scale-105 inline-block"
+              <a 
+                href="/socialplanr-v1.0.1.apk" 
+                download="SocialPlanr-v1.0.1.apk"
+                className="bg-white text-blue-600 px-8 py-3 rounded-xl text-lg font-semibold hover:shadow-2xl transition-all duration-300 transform hover:scale-105 inline-block text-center"
               >
-                📱 APK Android (78MB)
-              </Link>
-              <button 
-                onClick={() => window.open('http://localhost:8081', '_blank')}
-                className="border-2 border-white text-white px-8 py-3 rounded-xl text-lg font-semibold hover:bg-white hover:text-blue-600 transition-all duration-300"
-              >
-                🌐 Ouvrir dans le navigateur
-              </button>
+                📱 APK Android (v1.0.1 - 36 MB)
+              </a>
             </div>
             
             <p className="text-sm mt-4 opacity-75">
@@ -274,20 +297,20 @@ export default function Install() {
                     </div>
                     <div className="ml-3">
                       <p className="text-sm text-green-700">
-                        <strong>APK Fonctionnel Disponible :</strong> L&apos;APK complet (~78MB) est maintenant prêt à être installé ! 
+                        <strong>APK Fonctionnel Disponible :</strong> L&apos;APK complet (~80MB) est maintenant prêt à être installé ! 
                         Il contient toutes les fonctionnalités de SocialPlanr.
                       </p>
                     </div>
                   </div>
                 </div>
                 
-                <Link 
-                  href="/socialplanr-v1.0.0.apk" 
-                  download="SocialPlanr-v1.0.0.apk"
+                <a 
+                  href="/socialplanr-v1.0.1.apk" 
+                  download="SocialPlanr-v1.0.1.apk"
                   className="w-full bg-green-600 text-white py-3 px-6 rounded-xl font-semibold hover:bg-green-700 transition-colors inline-block text-center"
                 >
-                  📱 Télécharger APK Complet (v1.0.0 - 78MB)
-                </Link>
+                  📱 Télécharger APK Complet (v1.0.1 - 36 MB)
+                </a>
                 <button 
                   onClick={() => window.open('http://localhost:8081', '_blank')}
                   className="w-full bg-blue-600 text-white py-3 px-6 rounded-xl font-semibold hover:bg-blue-700 transition-all"
@@ -508,9 +531,9 @@ export default function Install() {
                   <p className="text-gray-600 mb-3">
                     Notre équipe est là pour vous aider
                   </p>
-                  <button className="text-blue-600 hover:text-blue-700 font-medium">
+                  <Link href="/support" className="text-blue-600 hover:text-blue-700 font-medium inline-block">
                     Contacter le support →
-                  </button>
+                  </Link>
                 </div>
                 
                 <div className="bg-gray-50 p-6 rounded-xl">
@@ -518,129 +541,10 @@ export default function Install() {
                   <p className="text-gray-600 mb-3">
                     Aidez-nous à améliorer l&apos;application
                   </p>
-                  <button className="text-blue-600 hover:text-blue-700 font-medium">
+                  <Link href="/report-issue" className="text-blue-600 hover:text-blue-700 font-medium inline-block">
                     Signaler un problème →
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* APK Build Info */}
-      <section className="py-16 bg-gray-900 text-white">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold mb-4">🔧 Informations Techniques</h2>
-            <p className="text-xl text-gray-300">
-              Comment l&apos;APK SocialPlanr est généré
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 gap-8">
-            <div className="bg-gray-800 p-8 rounded-2xl">
-              <h3 className="text-xl font-semibold mb-4 text-green-400">📱 Build APK Actuel</h3>
-              <ul className="space-y-3 text-gray-300">
-                <li className="flex items-center space-x-3">
-                  <span className="text-green-400">✓</span>
-                  <span>Version: 1.0.0</span>
-                </li>
-                <li className="flex items-center space-x-3">
-                  <span className="text-green-400">✓</span>
-                  <span>Plateforme: Android (API 26+)</span>
-                </li>
-                <li className="flex items-center space-x-3">
-                  <span className="text-green-400">✓</span>
-                  <span>Build: EAS Build (Expo)</span>
-                </li>
-                <li className="flex items-center space-x-3">
-                  <span className="text-green-400">✓</span>
-                  <span>Type: Development Build</span>
-                </li>
-                <li className="flex items-center space-x-3">
-                  <span className="text-green-400">✓</span>
-                  <span>Taille: ~25 MB</span>
-                </li>
-              </ul>
-            </div>
-
-            <div className="bg-gray-800 p-8 rounded-2xl">
-              <h3 className="text-xl font-semibold mb-4 text-blue-400">🛠️ Génération APK</h3>
-              <div className="space-y-4">
-                <div className="bg-gray-900 p-4 rounded-lg">
-                  <p className="text-sm text-gray-300 mb-2">Commandes utilisées :</p>
-                  <code className="text-green-400 text-sm">
-                    # Installation EAS CLI<br/>
-                    npm install -g eas-cli<br/><br/>
-                    # Configuration build<br/>
-                    eas build:configure<br/><br/>
-                    # Génération APK<br/>
-                    eas build --platform android --local
-                  </code>
-                </div>
-                <p className="text-sm text-gray-400">
-                  Le build est automatiquement signé avec une clé de développement 
-                  et optimisé pour les tests sur appareils Android.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <div className="mt-12 bg-gradient-to-r from-green-600 to-emerald-600 p-6 rounded-2xl">
-            <div className="flex items-start space-x-4">
-              <div className="text-2xl">🎉</div>
-              <div>
-                <h4 className="text-lg font-semibold mb-2">✅ Build APK Réussi !</h4>
-                <p className="text-sm mb-4">
-                  <strong>🎯 APK Fonctionnel Généré :</strong> L&apos;APK complet de SocialPlanr (78MB) a été généré avec succès ! 
-                  Il est maintenant prêt à être installé sur n&apos;importe quel appareil Android.
-                </p>
-                <div className="bg-black/20 p-4 rounded-lg mb-4">
-                  <p className="text-sm mb-2"><strong>✅ Build réussi avec :</strong></p>
-                  <code className="text-xs">
-                    Java 17.0.16 (OpenJDK Homebrew)<br/>
-                    EAS CLI Preview Build - 78MB APK généré
-                  </code>
-                </div>
-                <div className="flex flex-wrap gap-2">
-                  <Link 
-                    href="/INSTALL_APK.md" 
-                    target="_blank"
-                    className="bg-blue-600 text-white px-4 py-2 rounded-lg text-sm hover:bg-blue-700 transition-colors"
-                  >
-                    📖 Guide d&apos;installation
                   </Link>
-                  <button 
-                    onClick={() => window.open('https://github.com/expo/eas-cli', '_blank')}
-                    className="border border-gray-200 text-white px-4 py-2 rounded-lg text-sm hover:bg-white hover:text-green-600 transition-colors"
-                  >
-                    📚 Documentation EAS
-                  </button>
-                  <button 
-                    onClick={() => window.open('http://localhost:8081', '_blank')}
-                    className="bg-blue-600 text-white px-4 py-2 rounded-lg text-sm hover:bg-blue-700 transition-colors"
-                  >
-                    🚀 App Expo Go (Développement)
-                  </button>
                 </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="mt-8 bg-gradient-to-r from-blue-600 to-indigo-600 p-6 rounded-2xl">
-            <div className="flex items-start space-x-4">
-              <div className="text-2xl">📋</div>
-              <div>
-                <h4 className="text-lg font-semibold mb-2">Étapes Réalisées avec Succès</h4>
-                <ol className="text-sm space-y-2 mb-4">
-                  <li><strong>✅ 1.</strong> Java JDK installé : <code className="bg-black/30 px-2 py-1 rounded">brew install openjdk@17</code></li>
-                  <li><strong>✅ 2.</strong> Script exécuté : <code className="bg-black/30 px-2 py-1 rounded">./scripts/build-apk.sh</code></li>
-                  <li><strong>✅ 3.</strong> APK copié vers le site web (78MB disponible au téléchargement)</li>
-                </ol>
-                <p className="text-xs opacity-75">
-                  L&apos;APK est maintenant prêt à être installé ! Vous pouvez aussi continuer à utiliser Expo Go pour le développement.
-                </p>
               </div>
             </div>
           </div>
@@ -651,19 +555,19 @@ export default function Install() {
       <section className="py-16 bg-gradient-to-r from-blue-600 to-purple-600">
         <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-bold text-white mb-4">
-            Prêt à organiser votre prochain événement ?
+            Prêt à prendre le contrôle de vos finances ?
           </h2>
           <p className="text-xl text-blue-100 mb-8">
-            Téléchargez SocialPlanr maintenant et commencez à planifier avec vos amis !
+            Téléchargez SocialPlanr maintenant et commencez à gérer vos finances entreprise et personnel !
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link 
-              href="/socialplanr-v1.0.0.apk" 
-              download="SocialPlanr-v1.0.0.apk"
-              className="bg-white text-blue-600 px-8 py-3 rounded-xl text-lg font-semibold hover:shadow-2xl transition-all duration-300 transform hover:scale-105 inline-block"
+            <a 
+              href="/socialplanr-v1.0.1.apk" 
+              download="SocialPlanr-v1.0.1.apk"
+              className="bg-white text-blue-600 px-8 py-3 rounded-xl text-lg font-semibold hover:shadow-2xl transition-all duration-300 transform hover:scale-105 inline-block text-center"
             >
-              📱 Télécharger APK
-            </Link>
+              📱 Télécharger APK (v1.0.1 - 36 MB)
+            </a>
             <Link href="/" className="border-2 border-white text-white px-8 py-3 rounded-xl text-lg font-semibold hover:bg-white hover:text-blue-600 transition-all duration-300">
               ← Retour à l&apos;accueil
             </Link>
@@ -671,30 +575,7 @@ export default function Install() {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="bg-gray-900 text-white py-12">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col md:flex-row justify-between items-center">
-            <div className="flex items-center space-x-2 mb-4 md:mb-0">
-              <div className="w-8 h-8 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-lg">S</span>
-              </div>
-              <h4 className="text-xl font-bold">SocialPlanr</h4>
-            </div>
-            
-            <div className="flex space-x-6 text-gray-400">
-              <Link href="/" className="hover:text-white transition-colors">Accueil</Link>
-              <Link href="#" className="hover:text-white transition-colors">Confidentialité</Link>
-              <Link href="#" className="hover:text-white transition-colors">Conditions</Link>
-              <Link href="#support" className="hover:text-white transition-colors">Support</Link>
-            </div>
-          </div>
-          
-          <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
-            <p>&copy; 2024 SocialPlanr. Tous droits réservés.</p>
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </div>
     </>
   );

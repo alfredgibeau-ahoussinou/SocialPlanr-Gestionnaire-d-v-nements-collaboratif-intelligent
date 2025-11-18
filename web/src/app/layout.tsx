@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { AuthProvider } from "@/contexts/AuthContext";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -13,9 +14,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "SocialPlanr - Gestionnaire d'événements collaboratif intelligent",
-  description: "Organisez ensemble vos événements (week-end, voyage, soirée) en collaborant sur la date, le lieu, les activités et les dépenses. Intégration IA pour des plans automatiques.",
-  keywords: ["événements", "collaboration", "voyage", "planification", "IA", "groupe"],
+  title: "SocialPlanr - Gestionnaire de finances entreprise et personnel",
+  description: "Gérez vos budgets, suivez vos dépenses et revenus, générez des rapports financiers détaillés. Une solution complète pour gérer vos finances professionnelles et personnelles.",
+  keywords: ["finances", "budget", "dépenses", "revenus", "comptabilité", "gestion financière"],
 };
 
 export default function RootLayout({
@@ -24,11 +25,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="fr">
+    <html lang="fr" data-scroll-behavior="smooth">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <AuthProvider>
         {children}
+        </AuthProvider>
       </body>
     </html>
   );
