@@ -1,9 +1,11 @@
 import type { NextConfig } from "next";
 
-export default {
-  output: 'export',
+const nextConfig: NextConfig = {
+  // Pour Vercel, on peut utiliser le mode standard (pas besoin de 'export')
+  // output: 'export', // Commenté pour permettre le déploiement Vercel standard
   images: {
-    unoptimized: true,
+    unoptimized: true, // Gardé pour compatibilité
   },
-  // ...autres options éventuelles
 };
+
+export default nextConfig;

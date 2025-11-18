@@ -52,9 +52,9 @@ export default function Install() {
               <Link href="/comment-ca-marche" className="text-gray-600 hover:text-blue-600 transition-colors">
                 Comment ça marche
               </Link>
-              <a href="/install" className="text-gray-600 hover:text-blue-600 transition-colors">
+              <Link href="/install" className="text-gray-600 hover:text-blue-600 transition-colors">
                 📱 Installer l&apos;app
-              </a>
+              </Link>
               <Link href="/contact" className="text-gray-600 hover:text-blue-600 transition-colors">
                 Contact
               </Link>
@@ -97,20 +97,20 @@ export default function Install() {
             data-mobile-menu
           >
             <div className="px-3 pt-3 pb-3 space-y-1.5 bg-white/98 backdrop-blur-2xl rounded-2xl mt-3 shadow-xl border-2 border-blue-100/50">
-                <Link
-                  href="/fonctionnalites" 
-                  className="block px-4 py-2.5 text-gray-700 hover:text-white hover:bg-gradient-to-r hover:from-blue-500 hover:to-purple-500 rounded-lg transition-all duration-300 transform hover:scale-[1.03] font-medium relative overflow-hidden group"
-                  onClick={() => setMobileMenuOpen(false)}
-                  style={{ 
-                    animation: mobileMenuOpen ? 'scaleIn 0.35s ease-out 0.05s both' : 'none' 
-                  }}
-                >
-                  <span className="relative z-10 flex items-center space-x-2">
-                    <span className="text-lg">📋</span>
-                    <span>Fonctionnalités</span>
-                  </span>
-                  <span className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
-                </Link>
+              <Link 
+                href="/fonctionnalites" 
+                className="block px-4 py-2.5 text-gray-700 hover:text-white hover:bg-gradient-to-r hover:from-blue-500 hover:to-purple-500 rounded-lg transition-all duration-300 transform hover:scale-[1.03] font-medium relative overflow-hidden group"
+                onClick={() => setMobileMenuOpen(false)}
+                style={{ 
+                  animation: mobileMenuOpen ? 'scaleIn 0.35s ease-out 0.05s both' : 'none' 
+                }}
+              >
+                <span className="relative z-10 flex items-center space-x-2">
+                  <span className="text-lg">📋</span>
+                  <span>Fonctionnalités</span>
+                </span>
+                <span className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
+              </Link>
               <Link
                 href="/comment-ca-marche" 
                 className="block px-4 py-2.5 text-gray-700 hover:text-white hover:bg-gradient-to-r hover:from-blue-500 hover:to-purple-500 rounded-lg transition-all duration-300 transform hover:scale-[1.03] font-medium relative overflow-hidden group"
@@ -377,7 +377,7 @@ export default function Install() {
       </section>
 
       {/* Installation Instructions */}
-      <section id="fonctionnalites" className="py-16 bg-gradient-to-br from-gray-50 to-blue-50">
+      <section id="installation" className="py-16 bg-gradient-to-br from-gray-50 to-blue-50">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">
@@ -521,9 +521,9 @@ export default function Install() {
                   <p className="text-gray-600 mb-3">
                     Consultez notre guide complet d&apos;utilisation
                   </p>
-                  <button className="text-blue-600 hover:text-blue-700 font-medium">
+                  <Link href="/support" className="text-blue-600 hover:text-blue-700 font-medium inline-block">
                     Voir la documentation →
-                  </button>
+                  </Link>
                 </div>
                 
                 <div className="bg-gray-50 p-6 rounded-xl">
@@ -531,7 +531,7 @@ export default function Install() {
                   <p className="text-gray-600 mb-3">
                     Notre équipe est là pour vous aider
                   </p>
-                  <Link href="/support" className="text-blue-600 hover:text-blue-700 font-medium inline-block">
+                  <Link href="/contact" className="text-blue-600 hover:text-blue-700 font-medium inline-block">
                     Contacter le support →
                   </Link>
                 </div>
@@ -541,7 +541,7 @@ export default function Install() {
                   <p className="text-gray-600 mb-3">
                     Aidez-nous à améliorer l&apos;application
                   </p>
-                  <Link href="/report-issue" className="text-blue-600 hover:text-blue-700 font-medium inline-block">
+                  <Link href="/bug" className="text-blue-600 hover:text-blue-700 font-medium inline-block">
                     Signaler un problème →
                   </Link>
                 </div>

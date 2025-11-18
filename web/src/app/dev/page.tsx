@@ -212,9 +212,9 @@ export default function DevPage() {
               <Link href="/install" className="bg-white text-blue-600 px-6 py-3 rounded-lg font-semibold hover:shadow-lg transition-all">
                 📱 Tester l&apos;app mobile
               </Link>
-              <button className="border-2 border-white text-white px-6 py-3 rounded-lg font-semibold hover:bg-white hover:text-blue-600 transition-all">
+              <Link href="/support" className="border-2 border-white text-white px-6 py-3 rounded-lg font-semibold hover:bg-white hover:text-blue-600 transition-all inline-block text-center">
                 📚 Voir la documentation
-              </button>
+              </Link>
             </div>
           </div>
         </div>
